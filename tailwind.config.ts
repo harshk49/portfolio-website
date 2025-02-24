@@ -1,6 +1,6 @@
 import type { Config } from "tailwindcss";
 
-export default {
+const config: Config = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -12,7 +12,19 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      animation: {
+        "text-gradient": "text-gradient 1.5s linear infinite",
+      },
+      keyframes: {
+        "text-gradient": {
+          to: {
+            backgroundPosition: "200% center",
+          },
+        },
+      },
     },
   },
   plugins: [],
-} satisfies Config;
+};
+
+export default config;
