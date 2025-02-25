@@ -3,11 +3,12 @@
 import { FaGitAlt } from "react-icons/fa6";
 import {
   RiJavascriptFill,
+  RiNextjsFill,
   RiNodejsLine,
   RiReactjsLine,
   RiTailwindCssFill,
 } from "react-icons/ri";
-import { SiMongodb, SiMui, SiPostman } from "react-icons/si";
+import { SiMongodb, SiPostman } from "react-icons/si";
 import { BiLogoTypescript } from "react-icons/bi";
 
 import { motion } from "framer-motion";
@@ -103,7 +104,10 @@ const Technologies: React.FC = () => {
             icon: <SiPostman className="text-5xl text-orange-500" />,
             delay: 1.5,
           },
-          { icon: <SiMui className="text-5xl text-blue-500" />, delay: 4 },
+          {
+            icon: <RiNextjsFill className="text-5xl text-white" />,
+            delay: 4,
+          },
         ].map((tech, index) => (
           <motion.div
             key={index}
