@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { Analytics } from "@vercel/analytics/react"; // Import Analytics
+import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
+import Favicon from "./components/Favicon"; // Import Favicon
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,13 +26,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        {/* Favicon */}
-        <link rel="icon" href="/hk_logo.svg" type="image/svg+xml" />
-      </head>
+      <head>{/* Ensure no static favicon */}</head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <Favicon /> {/* This will dynamically update the favicon */}
         <main>{children}</main>
         <Analytics />
       </body>
