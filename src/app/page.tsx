@@ -1,73 +1,71 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import Image from "next/image";
-import { motion } from "framer-motion";
-import Hero from "@/app/components/Hero";
-import About from "@/app/components/About";
-import Technologies from "@/app/components/Technologies";
-import Projects from "@/app/components/Projects";
-import Contact from "@/app/components/Contact";
-import Footer from "@/app/components/Footer";
-import Navbar from "@/app/components/Navbar"; // Navbar included as in App.jsx
+import React, { useState, useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import Hero from "./components/Hero";
+import LoadingScreen from "./components/LoadingScreen";
 
-export default function Home() {
+const Page = () => {
   const [loading, setLoading] = useState(true);
+  const [showHero, setShowHero] = useState(false);
+  const loadingRef = useRef<HTMLDivElement>(null);
+  const heroRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setLoading(false);
-    }, 2000);
+      // Start transition animation
+      const tl = gsap.timeline({
+        onComplete: () => {
+          setLoading(false);
+        },
+      });
+
+      // Animate loading screen up and hero section up from bottom
+      tl.set(heroRef.current, { y: "100%" })
+        .add(() => setShowHero(true))
+        .to(loadingRef.current, {
+          y: "-100%",
+          duration: 0.8,
+          ease: "power2.inOut",
+        })
+        .to(
+          heroRef.current,
+          {
+            y: "0%",
+            duration: 0.8,
+            ease: "power2.out",
+          },
+          "<" // Start at the same time as previous animation
+        );
+    }, 3000); // Loading screen will show for 3 seconds to complete all animations
 
     return () => clearTimeout(timer);
   }, []);
 
   return (
-    <div className="overflow-x-hidden antialiased text-neutral-100 selection:bg-cyan-300 selection:text-cyan-900">
-      {loading ? (
-        <motion.div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-        >
-          <Image
-            src="/hk_logo.svg"
-            alt="Loading Logo"
-            width={128}
-            height={128}
-            className="animate-bounce"
-          />
-        </motion.div>
-      ) : (
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.8, y: -20 }}
-          transition={{ duration: 0.5 }}
-        >
-          <div className="fixed top-0 w-full h-full -z-10 bg-black"></div>
-          <div className="container px-8 mx-auto">
-            <Navbar />
-            <section id="home">
-              <Hero />
-            </section>
-            <section id="about">
-              <About />
-            </section>
-            <section id="technologies">
-              <Technologies />
-            </section>
-            <section id="projects">
-              <Projects />
-            </section>
-            <section id="contact">
-              <Contact />
-            </section>
-            <Footer />
-          </div>
-        </motion.div>
+    <div className="min-h-screen relative overflow-hidden">
+      {/* Loading Screen */}
+      {(loading || showHero) && (
+        <div ref={loadingRef} className="fixed inset-0 z-50">
+          <LoadingScreen />
+        </div>
+      )}
+
+      {/* Hero Section */}
+      {showHero && (
+        <div ref={heroRef} className="fixed inset-0 z-40">
+          <Hero />
+        </div>
+      )}
+
+      {/* Fallback Hero (after animation completes) */}
+      {!loading && !showHero && (
+        <div className="min-h-screen">
+          <Hero />
+        </div>
       )}
     </div>
   );
-}
+};
+
+export default Page;

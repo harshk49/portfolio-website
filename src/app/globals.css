@@ -1,27 +1,11 @@
-@import url("https://geist-fonts.vercel.app/css");
+@import url("https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-  font-family: "Geist", sans-serif;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* Global background color and font family */
 body {
-  color: var(--foreground);
-  background: var(--background);
-}
-
-.shadow-white {
-  box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.8);
+  background-color: #fffdf7;
+  font-family: "Urbanist", sans-serif;
 }
