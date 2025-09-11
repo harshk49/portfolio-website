@@ -9,7 +9,8 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Urbanist", "sans-serif"],
+        sans: ["Satoshi", "sans-serif"],
+        clash: ["Clash Grotesk", "sans-serif"],
       },
       colors: {
         background: "var(--background)",

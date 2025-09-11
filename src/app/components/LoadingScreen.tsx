@@ -148,7 +148,12 @@ const LoadingScreen = () => {
       {/* Loading section - at the bottom */}
       <div className="flex flex-col items-center pb-12 space-y-3">
         {/* Loading text */}
-        <p className="text-white text-xs italic font-light">/ / loading</p>
+        <p
+          className="text-white text-xs italic font-light"
+          style={{ fontFamily: "monospace" }}
+        >
+          {"//loading"}
+        </p>
 
         {/* Progress bar container */}
         <div className="w-48 h-px bg-gray-700 rounded-full overflow-hidden">
