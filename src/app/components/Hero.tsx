@@ -6,8 +6,6 @@ import { gsap } from "gsap";
 
 const Hero = () => {
   const [currentTime, setCurrentTime] = useState<string>("");
-  const nameRef = useRef<HTMLHeadingElement>(null);
-  const logoRef = useRef<HTMLDivElement>(null);
   const timeLocationRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -31,21 +29,7 @@ const Hero = () => {
   }, []);
 
   useEffect(() => {
-    // Set initial states for all animated elements
-    if (nameRef.current) {
-      gsap.set(nameRef.current, {
-        y: 200,
-        opacity: 0,
-      });
-    }
-
-    if (logoRef.current) {
-      gsap.set(logoRef.current, {
-        x: -100,
-        opacity: 0,
-      });
-    }
-
+    // Set initial state for time/location element
     if (timeLocationRef.current) {
       gsap.set(timeLocationRef.current, {
         x: 100,
@@ -53,72 +37,35 @@ const Hero = () => {
       });
     }
 
-    // Create timeline for coordinated animations
+    // Animate time/location from right
     const tl = gsap.timeline({ delay: 0.3 });
 
-    // Animate logo from left
-    tl.to(
-      logoRef.current,
-      {
-        x: 0,
-        opacity: 1,
-        duration: 0.8,
-        ease: "power3.out",
-      },
-      0
-    )
-      // Animate time/location from right
-      .to(
-        timeLocationRef.current,
-        {
-          x: 0,
-          opacity: 1,
-          duration: 0.8,
-          ease: "power3.out",
-        },
-        0.1
-      ) // Slight delay after logo
-      // Animate name text from bottom
-      .to(
-        nameRef.current,
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1.2,
-          ease: "power3.out",
-        },
-        0.5
-      ); // Delay after header elements
+    tl.to(timeLocationRef.current, {
+      x: 0,
+      opacity: 1,
+      duration: 0.8,
+      ease: "power3.out",
+    });
   }, []);
 
   return (
-    <section className="h-screen relative p-8 flex flex-col overflow-hidden">
-      {/* Full-page background video */}
-      <video
-        className="absolute inset-0 w-full h-full object-cover z-0"
-        autoPlay
-        muted
-        loop
-        playsInline
-      >
-        <source src="/portfolio.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-
-      {/* Dark overlay for better text visibility */}
-      <div className="absolute inset-0 bg-black bg-opacity-30 z-10"></div>
-
-      {/* Logo and Time/Location for Hero page */}
-      <div ref={logoRef} className="absolute top-8 left-8 z-20">
+    <section
+      id="home"
+      className="h-screen relative p-8 flex flex-col overflow-hidden bg-black"
+    >
+      {/* Top left - Logo and Tech Explorer */}
+      <div className="absolute top-8 left-8 flex items-center text-white text-xl font-light">
         <Image
           src="/hk_logo.svg"
-          alt="Harsh Kardile Logo"
-          width={50}
-          height={50}
-          className="w-12 h-12 cursor-pointer"
+          alt="HK Logo"
+          width={32}
+          height={32}
+          className="w-8 h-8 mr-3"
         />
+        <span>Tech Explorer</span>
       </div>
 
+      {/* Time/Location in top right corner */}
       <div ref={timeLocationRef} className="absolute top-8 right-8 z-20">
         <div className="text-right">
           <div className="text-white text-sm font-medium">Indore, India</div>
@@ -126,15 +73,30 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Hero content goes here */}
-      <div className="flex-1 flex items-center justify-center z-20"></div>
+      {/* Hero Content */}
+      <div className="flex-1 flex items-center justify-center">
+        <div className="text-center">
+          {/* Profile Image - Centered */}
+          <div className="relative mx-auto mb-8">
+            <div className="w-80 h-80 rounded-3xl overflow-hidden border-4 border-white/20 shadow-2xl">
+              <Image
+                src="/hk_profile.jpeg"
+                alt="Harsh Kardile"
+                width={320}
+                height={320}
+                className="w-full h-full object-cover"
+                priority
+              />
+            </div>
+            {/* Gradient glow effect */}
+            <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-blue-500/20 to-purple-500/20 blur-xl -z-10"></div>
+          </div>
+        </div>
+      </div>
 
-      {/* Large name text at bottom */}
-      <div className="w-full z-20">
-        <h1
-          ref={nameRef}
-          className="text-[14rem] font-normal text-white font-clash text-center leading-none -mb-8"
-        >
+      {/* Name at bottom covering full width */}
+      <div className="absolute bottom-8 left-0 right-0">
+        <h1 className="text-[8rem] md:text-[12rem] lg:text-[14rem] font-light text-white text-center leading-none tracking-normal whitespace-nowrap">
           Harsh Kardile
         </h1>
       </div>
