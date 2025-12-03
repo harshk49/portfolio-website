@@ -1,13 +1,15 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import LoadingScreen from "./components/LoadingScreen";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
+import Footer from "./components/Footer";
 
 const Page = () => {
   const [loading, setLoading] = useState(true);
+  const navbarRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -29,8 +31,9 @@ const Page = () => {
       {/* Main Content After Loading */}
       {!loading && (
         <div className="relative">
-          <Navbar />
-          <Hero />
+          <Navbar ref={navbarRef} />
+          <Hero navbarRef={navbarRef} />
+          <Footer />
         </div>
       )}
     </div>

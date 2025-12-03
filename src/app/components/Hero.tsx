@@ -4,7 +4,11 @@ import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
 
-const Hero = () => {
+interface HeroProps {
+  navbarRef: React.RefObject<HTMLDivElement | null>;
+}
+
+const Hero = ({ navbarRef }: HeroProps) => {
   const [currentTime, setCurrentTime] = useState<string>("");
   const timeLocationRef = useRef<HTMLDivElement>(null);
 
@@ -29,26 +33,65 @@ const Hero = () => {
   }, []);
 
   useEffect(() => {
-    // Set initial state for time/location element
+    // Set initial state for time/location element - completely hidden
     if (timeLocationRef.current) {
       gsap.set(timeLocationRef.current, {
         x: 100,
         opacity: 0,
+        visibility: 'hidden'
       });
     }
 
-    // Animate time/location from right
-    const tl = gsap.timeline({ delay: 0.3 });
+    // Set initial state for navbar - completely hidden above viewport
+    const navbarElement = navbarRef?.current;
+    if (navbarElement) {
+      gsap.set(navbarElement, {
+        y: -100,
+        opacity: 0,
+        visibility: 'hidden'
+      });
+    }
 
-    tl.to(timeLocationRef.current, {
-      x: 0,
-      opacity: 1,
-      duration: 0.8,
-      ease: "power3.out",
-    });
-  }, []);
+    // Delay to ensure loading screen is completely gone
+    const animationTimer = setTimeout(() => {
+      // Create timeline for coordinated animations
+      const tl = gsap.timeline();
 
-  return (
+      // Animate navbar sliding down from top
+      if (navbarElement) {
+        tl.set(navbarElement, { visibility: 'visible' })
+          .to(
+            navbarElement,
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.8,
+              ease: "power3.out",
+            },
+            0
+          );
+      }
+      
+      // Animate time/location from right
+      tl.set(timeLocationRef.current, { visibility: 'visible' }, navbarElement ? 0.2 : 0)
+        .to(
+          timeLocationRef.current,
+          {
+            x: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: "power3.out",
+          },
+          navbarElement ? 0.2 : 0
+        );
+    }, 100); // Small delay to ensure loading screen transition is complete
+
+    return () => {
+      clearTimeout(animationTimer);
+    };
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);  return (
     <section
       id="home"
       className="h-screen relative p-8 flex flex-col overflow-hidden bg-black"
@@ -58,11 +101,10 @@ const Hero = () => {
         <Image
           src="/hk_logo.svg"
           alt="HK Logo"
-          width={32}
-          height={32}
-          className="w-8 h-8 mr-3"
+          width={40}
+          height={40}
+          className="w-10 h-10 mr-3"
         />
-        <span>Tech Explorer</span>
       </div>
 
       {/* Time/Location in top right corner */}

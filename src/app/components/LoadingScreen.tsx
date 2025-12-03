@@ -36,11 +36,10 @@ const LoadingScreen = () => {
         <Image
           src="/hk_logo.svg"
           alt="HK Logo"
-          width={32}
-          height={32}
-          className="w-8 h-8 mr-3"
+          width={40}
+          height={40}
+          className="w-10 h-10 mr-3"
         />
-        <span>Tech Explorer</span>
       </div>
 
       {/* Percentage display - Centered */}

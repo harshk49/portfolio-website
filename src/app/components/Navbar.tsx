@@ -1,19 +1,21 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, forwardRef } from "react";
 
-const Navbar = () => {
+const Navbar = forwardRef<HTMLDivElement>((props, ref) => {
   const [activeItem, setActiveItem] = useState("Home");
 
   const navItems = [
-    
     { name: "Works", href: "#work" },
     { name: "Experience", href: "#experience" },
     { name: "Contact", href: "#contact" },
   ];
 
   return (
-    <nav className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50">
+    <nav
+      ref={ref}
+      className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50"
+    >
       <div className=" px-6 py-3">
         <ul className="flex items-center space-x-8">
           {navItems.map((item) => (
@@ -35,6 +37,8 @@ const Navbar = () => {
       </div>
     </nav>
   );
-};
+});
+
+Navbar.displayName = "Navbar";
 
 export default Navbar;
