@@ -24,8 +24,61 @@ const Footer = () => {
   return (
     <footer className="h-screen w-full bg-black text-white flex flex-col relative overflow-hidden">
       {/* Main Content Container */}
-      <div className="flex-1 flex flex-col items-center justify-center px-8 lg:px-16">
-        {/* Large CTA Text */}
+      <div className="flex-1 flex flex-col justify-center w-full">
+        {/* Contact Section */}
+        <div className="w-full pl-2 lg:pl-4">
+          <h2 className="text-5xl lg:text-7xl font-bold mb-12">Contact</h2>
+
+          <div className="grid grid-cols-2 gap-y-6 text-xl lg:text-2xl pl-8 lg:pl-12">
+            <div className="text-white/60">Email</div>
+            <a
+              href="mailto:harshkardile49@gmail.com"
+              className="text-white text-right pr-8 lg:pr-16 hover:text-white/70 transition-colors"
+            >
+              harshkardile49@gmail.com
+            </a>
+
+            <div className="text-white/60">LinkedIn</div>
+            <a
+              href="https://linkedin.com/in/harsh-kardile"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white text-right pr-8 lg:pr-16 hover:text-white/70 transition-colors"
+            >
+             /in/harsh-kardile
+            </a>
+
+            <div className="text-white/60">Medium</div>
+            <a
+              href="https://medium.com/@harshkardile"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white text-right pr-8 lg:pr-16 hover:text-white/70 transition-colors"
+            >
+              /@harshkardile
+            </a>
+
+            <div className="text-white/60">GitHub</div>
+            <a
+              href="https://github.com/harshk49"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white text-right pr-8 lg:pr-16 hover:text-white/70 transition-colors"
+            >
+              /harshk49
+            </a>
+
+            <div className="text-white/60">Instagram</div>
+            <a
+              href="https://instagram.com/harsh_kardile49"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white text-right pr-8 lg:pr-16 hover:text-white/70 transition-colors"
+            >
+              harsh_kardile49
+            </a>
+          </div>
+        </div>
       </div>
 
       {/* When the Work Stops Section */}
