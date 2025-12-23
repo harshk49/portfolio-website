@@ -1,38 +1,85 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 
 const Footer = () => {
-  return (
-    <footer className="bg-white border-t border-black/10 py-8 px-2">
-      <div className="max-w-full mx-4">
-        <div className="flex items-center justify-between">
-          {/* Left side - Quote */}
-          <div className="flex-1 pr-4">
-            <blockquote className="text-xl md:text-2xl font-light text-black leading-relaxed">
-              &quot;If you recognize quality when you see it, you already know
-              exactly where to reach me.&quot;
-            </blockquote>
-          </div>
+  const marqueeImages = [
+    "/goku.jpeg",
+    "/Harsh.jpeg",
+    "/beng.jpeg",
+    "/book.jpeg",
+    "/kaach.jpeg",
+    "/plane.jpeg",
+    "/tajmahal.jpeg",
+    "https://i.pinimg.com/736x/05/4a/64/054a642a0ef827e6be57fe66e3e75459.jpg",
+    "https://i.pinimg.com/736x/b3/3e/99/b33e99df33e57bec6d9d3f896497a2e5.jpg",
+    "https://i.pinimg.com/736x/1a/03/ff/1a03fff18fbb548ab5afecb428467acb.jpg",
+    "https://i.pinimg.com/736x/c0/8d/e0/c08de0f057c174f95a9c0a86713483e4.jpg",
+    "https://i.pinimg.com/736x/d1/bd/98/d1bd98ac3d49e5c3bcae13ab1e2a5ed3.jpg",
+    "https://i.pinimg.com/1200x/22/e6/80/22e680e6936b7ab1a22f2c7f85416cbc.jpg",
+    "https://i.pinimg.com/736x/f7/9d/ee/f79deee1fec6d20e03887257661ecfa6.jpg",
+  ];
 
-          {/* Right side - Link */}
-          <div className="flex-1 flex justify-end pl-4">
-            <div className="group">
-              <div className="bg-black/8 backdrop-blur-md border border-black/15 rounded-3xl p-8 min-w-[320px] transition-all duration-500 hover:bg-black/15 hover:border-black/25 hover:scale-[1.02] hover:shadow-2xl">
-                <div className="text-center space-y-4">
-                  <a
-                    href="https://taponn.me/harshkardile49"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block text-black text-2xl font-medium hover:text-gray-700 transition-colors duration-300 tracking-tight"
-                  >
-                    taponn.me/harshkardile49
-                  </a>
-                </div>
+  return (
+    <footer className="h-screen w-full bg-black text-white flex flex-col relative overflow-hidden">
+      {/* Main Content Container */}
+      <div className="flex-1 flex flex-col items-center justify-center px-8 lg:px-16">
+        {/* Large CTA Text */}
+      </div>
+
+      {/* When the Work Stops Section */}
+      <div className="w-full pl-2 lg:pl-4 mb-8">
+        <h2 className="text-3xl lg:text-5xl font-bold">When the Work Stops</h2>
+      </div>
+
+      {/* Continuous Marquee Slider with Images */}
+      <div className="w-full pb-16 overflow-hidden">
+        <div className="flex gap-4">
+          <div className="flex gap-4 animate-marquee">
+            {marqueeImages.map((image, index) => (
+              <div
+                key={`set1-${index}`}
+                className="flex-shrink-0 rounded-2xl overflow-hidden group"
+                style={{ width: "280px", height: "280px" }}
+                onContextMenu={(e) => e.preventDefault()}
+              >
+                <Image
+                  src={image}
+                  alt={`Portfolio image ${index + 1}`}
+                  width={280}
+                  height={280}
+                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 pointer-events-none select-none transition-all duration-300"
+                  draggable={false}
+                />
               </div>
-            </div>
+            ))}
+          </div>
+          <div className="flex gap-4 animate-marquee" aria-hidden="true">
+            {marqueeImages.map((image, index) => (
+              <div
+                key={`set2-${index}`}
+                className="flex-shrink-0 rounded-2xl overflow-hidden group"
+                style={{ width: "280px", height: "280px" }}
+                onContextMenu={(e) => e.preventDefault()}
+              >
+                <Image
+                  src={image}
+                  alt={`Portfolio image ${index + 1}`}
+                  width={280}
+                  height={280}
+                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 pointer-events-none select-none transition-all duration-300"
+                  draggable={false}
+                />
+              </div>
+            ))}
           </div>
         </div>
+      </div>
+
+      {/* Decorative Element - Subtle gradient */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-gray-900/20 to-transparent"></div>
       </div>
     </footer>
   );

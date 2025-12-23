@@ -14,7 +14,7 @@ const Navbar = forwardRef<HTMLDivElement>((props, ref) => {
   return (
     <nav
       ref={ref}
-      className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50"
+      className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 invisible opacity-0"
     >
       <div className=" px-6 py-3">
         <ul className="flex items-center space-x-8">

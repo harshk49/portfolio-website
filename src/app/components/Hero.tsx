@@ -3,6 +3,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
+import { BsLinkedin } from "react-icons/bs";
+import { FaGithub } from "react-icons/fa";
+import { BsWhatsapp } from "react-icons/bs";
 
 interface HeroProps {
   navbarRef: React.RefObject<HTMLDivElement | null>;
@@ -11,6 +14,11 @@ interface HeroProps {
 const Hero = ({ navbarRef }: HeroProps) => {
   const [currentTime, setCurrentTime] = useState<string>("");
   const timeLocationRef = useRef<HTMLDivElement>(null);
+  const heroTextRef = useRef<HTMLDivElement>(null);
+  const image1Ref = useRef<HTMLDivElement>(null);
+  const image2Ref = useRef<HTMLDivElement>(null);
+  const socialIconsRef = useRef<HTMLDivElement>(null);
+  const scrollDownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const updateTime = () => {
@@ -38,7 +46,7 @@ const Hero = ({ navbarRef }: HeroProps) => {
       gsap.set(timeLocationRef.current, {
         x: 100,
         opacity: 0,
-        visibility: 'hidden'
+        visibility: "hidden",
       });
     }
 
@@ -48,33 +56,83 @@ const Hero = ({ navbarRef }: HeroProps) => {
       gsap.set(navbarElement, {
         y: -100,
         opacity: 0,
-        visibility: 'hidden'
+        visibility: "hidden",
       });
     }
 
-    // Delay to ensure loading screen is completely gone
+    // Set initial state for hero text
+    if (heroTextRef.current) {
+      gsap.set(heroTextRef.current, {
+        y: 30,
+        opacity: 0,
+        visibility: "hidden",
+      });
+    }
+
+    // Set initial state for images
+    if (image1Ref.current) {
+      gsap.set(image1Ref.current, {
+        scale: 0.9,
+        opacity: 0,
+        visibility: "hidden",
+      });
+    }
+
+    if (image2Ref.current) {
+      gsap.set(image2Ref.current, {
+        scale: 0.9,
+        opacity: 0,
+        visibility: "hidden",
+      });
+    }
+
+    // Set initial state for social icons
+    if (socialIconsRef.current) {
+      gsap.set(socialIconsRef.current, {
+        y: 50,
+        opacity: 0,
+        visibility: "hidden",
+      });
+    }
+
+    // Set initial state for scroll down text
+    if (scrollDownRef.current) {
+      gsap.set(scrollDownRef.current, {
+        opacity: 0,
+        visibility: "hidden",
+      });
+    }
+
+    // Wait for loading screen slide-up animation to complete before starting Hero animations
     const animationTimer = setTimeout(() => {
       // Create timeline for coordinated animations
       const tl = gsap.timeline();
 
       // Animate navbar sliding down from top
       if (navbarElement) {
-        tl.set(navbarElement, { visibility: 'visible' })
-          .to(
-            navbarElement,
-            {
-              y: 0,
-              opacity: 1,
-              duration: 0.8,
-              ease: "power3.out",
-            },
-            0
-          );
+        // Remove CSS classes and set GSAP properties
+        navbarElement.classList.remove("invisible", "opacity-0");
+        tl.set(navbarElement, { visibility: "visible" }).to(
+          navbarElement,
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: "power3.out",
+          },
+          0
+        );
       }
-      
+
       // Animate time/location from right
-      tl.set(timeLocationRef.current, { visibility: 'visible' }, navbarElement ? 0.2 : 0)
-        .to(
+      if (timeLocationRef.current) {
+        // Remove CSS classes and set GSAP properties
+        timeLocationRef.current.classList.remove("invisible", "opacity-0");
+        tl.set(
+          timeLocationRef.current,
+          { visibility: "visible" },
+          navbarElement ? 0.2 : 0
+        ).to(
           timeLocationRef.current,
           {
             x: 0,
@@ -84,22 +142,102 @@ const Hero = ({ navbarRef }: HeroProps) => {
           },
           navbarElement ? 0.2 : 0
         );
-    }, 100); // Small delay to ensure loading screen transition is complete
+      }
+
+      // Animate social icons from bottom
+      if (socialIconsRef.current) {
+        socialIconsRef.current.classList.remove("invisible", "opacity-0");
+        tl.set(
+          socialIconsRef.current,
+          { visibility: "visible" },
+          navbarElement ? 0.2 : 0
+        ).to(
+          socialIconsRef.current,
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: "power3.out",
+          },
+          navbarElement ? 0.2 : 0
+        );
+      }
+
+      // Animate hero text
+      if (heroTextRef.current) {
+        heroTextRef.current.classList.remove("invisible", "opacity-0");
+        tl.set(heroTextRef.current, { visibility: "visible" }, 0.4).to(
+          heroTextRef.current,
+          {
+            y: 0,
+            opacity: 1,
+            duration: 1,
+            ease: "power3.out",
+          },
+          0.4
+        );
+      }
+
+      // Animate image 1
+      if (image1Ref.current) {
+        image1Ref.current.classList.remove("invisible", "opacity-0");
+        tl.set(image1Ref.current, { visibility: "visible" }, 0.6).to(
+          image1Ref.current,
+          {
+            scale: 1,
+            opacity: 1,
+            duration: 0.8,
+            ease: "power3.out",
+          },
+          0.6
+        );
+      }
+
+      // Animate image 2
+      if (image2Ref.current) {
+        image2Ref.current.classList.remove("invisible", "opacity-0");
+        tl.set(image2Ref.current, { visibility: "visible" }, 0.8).to(
+          image2Ref.current,
+          {
+            scale: 1,
+            opacity: 1,
+            duration: 0.8,
+            ease: "power3.out",
+          },
+          0.8
+        );
+      }
+
+      // Animate scroll down text with delay
+      if (scrollDownRef.current) {
+        scrollDownRef.current.classList.remove("invisible", "opacity-0");
+        tl.set(scrollDownRef.current, { visibility: "visible" }, 1.2).to(
+          scrollDownRef.current,
+          {
+            opacity: 1,
+            duration: 0.8,
+            ease: "power3.out",
+          },
+          1.2
+        );
+      }
+    }, 4700); // Wait for loading screen (3s) + slide animation (1.5s) + small buffer (200ms)
 
     return () => {
       clearTimeout(animationTimer);
     };
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);  return (
+  }, []);
+  return (
     <section
       id="home"
-      className="h-screen relative p-8 flex flex-col overflow-hidden bg-black"
+      className="h-screen relative p-8 flex flex-col overflow-hidden bg-[#F2F0EB]"
     >
       {/* Top left - Logo and Tech Explorer */}
-      <div className="absolute top-8 left-8 flex items-center text-white text-xl font-light">
+      <div className="absolute top-8 left-8 flex items-center text-black text-xl font-light">
         <Image
-          src="/hk_logo.svg"
+          src="/hk_logo_black.png"
           alt="HK Logo"
           width={40}
           height={40}
@@ -108,40 +246,58 @@ const Hero = ({ navbarRef }: HeroProps) => {
       </div>
 
       {/* Time/Location in top right corner */}
-      <div ref={timeLocationRef} className="absolute top-8 right-8 z-20">
+      <div
+        ref={timeLocationRef}
+        className="absolute top-8 right-8 z-20 invisible opacity-0"
+      >
         <div className="text-right">
-          <div className="text-white text-sm font-medium">Indore, India</div>
-          <div className="text-white text-lg font-medium">{currentTime}</div>
+          <div className="text-black text-sm font-medium">Indore, India</div>
+          <div className="text-black text-lg font-medium">{currentTime}</div>
         </div>
+      </div>
+
+      {/* Scroll Down text at bottom center */}
+      <div
+        ref={scrollDownRef}
+        className="absolute bottom-4 left-1/2 -translate-x-1/2 invisible opacity-0 select-none pointer-events-none"
+      >
+        <div className="text-black text-sm font-light tracking-wider">
+          SCROLL DOWN
+        </div>
+      </div>
+
+      {/* Social Icons - Bottom Left */}
+      <div
+        ref={socialIconsRef}
+        className="absolute bottom-8 left-[52px] flex flex-col gap-8 -translate-x-1/2 invisible opacity-0"
+      >
+        <a
+          href="https://linkedin.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-gray-800 hover:text-black transition-colors duration-300"
+        >
+          <BsLinkedin size={20} />
+        </a>
+        <a
+          href="https://wa.me/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-gray-800 hover:text-black transition-colors duration-300"
+        >
+          <BsWhatsapp size={20} />
+        </a>
+        <a
+          href="https://github.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-gray-800 hover:text-black transition-colors duration-300"
+        >
+          <FaGithub size={20} />
+        </a>
       </div>
 
       {/* Hero Content */}
-      <div className="flex-1 flex items-center justify-center">
-        <div className="text-center">
-          {/* Profile Image - Centered */}
-          <div className="relative mx-auto mb-8">
-            <div className="w-80 h-80 rounded-3xl overflow-hidden border-4 border-white/20 shadow-2xl">
-              <Image
-                src="/hk_profile.jpeg"
-                alt="Harsh Kardile"
-                width={320}
-                height={320}
-                className="w-full h-full object-cover"
-                priority
-              />
-            </div>
-            {/* Gradient glow effect */}
-            <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-blue-500/20 to-purple-500/20 blur-xl -z-10"></div>
-          </div>
-        </div>
-      </div>
-
-      {/* Name at bottom covering full width */}
-      <div className="absolute bottom-8 left-0 right-0">
-        <h1 className="text-[8rem] md:text-[12rem] lg:text-[14rem] font-light text-white text-center leading-none tracking-normal whitespace-nowrap">
-          Harsh Kardile
-        </h1>
-      </div>
     </section>
   );
 };

@@ -5,9 +5,9 @@ const LoadingScreen = () => {
   const [percentage, setPercentage] = useState(100);
 
   useEffect(() => {
-    const duration = 3000; // 3 seconds to match the timer in page.tsx
-    const interval = 100; // Update every 100ms for balanced smoothness
-    const totalSteps = duration / interval; // Total number of updates (30 steps)
+    const fastDuration = 2200; // Fast countdown for 2.2 seconds (slightly slower)
+    const interval = 40; // Update every 40ms for smooth but slightly slower animation
+    const totalSteps = fastDuration / interval; // Total steps for countdown
     const decrement = 99 / totalSteps; // Calculate decrement to go from 100 to 1
 
     const timer = setInterval(() => {
@@ -21,18 +21,18 @@ const LoadingScreen = () => {
       });
     }, interval);
 
-    // Ensure it ends at exactly 1% after 3 seconds
+    // After fast countdown, pause at 1% for the remaining time
     setTimeout(() => {
       setPercentage(1);
-    }, duration - 50); // Set to 1% just before the main timer ends
+    }, fastDuration);
 
     return () => clearInterval(timer);
   }, []);
 
   return (
-    <div className="w-full h-screen bg-black flex flex-col items-center justify-center relative overflow-hidden">
+    <div className="w-full h-screen bg-black flex flex-col items-center justify-center relative overflow-hidden will-change-transform">
       {/* Top left - Logo and Tech Explorer */}
-      <div className="absolute top-8 left-8 flex items-center text-gray-400 text-xl font-light">
+      <div className="absolute top-8 left-8 flex items-center text-gray-400 text-xl font-light will-change-transform">
         <Image
           src="/hk_logo.svg"
           alt="HK Logo"
