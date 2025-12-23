@@ -31,26 +31,31 @@ const LoadingScreen = () => {
 
   return (
     <div className="w-full h-screen bg-black flex flex-col items-center justify-center relative overflow-hidden will-change-transform">
-      {/* Top left - Logo and Tech Explorer */}
-      <div className="absolute top-8 left-8 flex items-center text-gray-400 text-xl font-light will-change-transform">
-        <Image
-          src="/hk_logo.svg"
-          alt="HK Logo"
-          width={40}
-          height={40}
-          className="w-10 h-10 mr-3"
-        />
-      </div>
+      {/* Centered Content Container */}
+      <div className="mx-auto w-full max-w-7xl h-full relative px-4 sm:px-6 md:px-12 lg:px-24">
+        {/* Top left - Logo */}
+        <div className="absolute top-4 left-4 sm:top-6 sm:left-6 md:top-8 md:left-8 flex items-center text-gray-400 text-base sm:text-lg md:text-xl font-light will-change-transform z-10">
+          <Image
+            src="/hk_logo.svg"
+            alt="HK Logo"
+            width={40}
+            height={40}
+            className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 mr-2 sm:mr-3"
+          />
+        </div>
 
-      {/* Percentage display - Centered */}
-      <div className="text-white text-4xl md:text-5xl font-light tracking-wider transition-all duration-300 ease-out">
-        {Math.round(percentage)}
-        <span className="text-3xl md:text-4xl opacity-70">%</span>
-      </div>
+        {/* Percentage display - Centered */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-wider transition-all duration-300 ease-out z-10">
+          {Math.round(percentage)}
+          <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl opacity-70">
+            %
+          </span>
+        </div>
 
-      {/* Loading text at bottom right */}
-      <div className="absolute bottom-8 right-8 text-gray-400 text-lg font-light">
-        Loading...
+        {/* Loading text at bottom right */}
+        <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 md:bottom-8 md:right-8 text-gray-400 text-sm sm:text-base md:text-lg font-light z-10">
+          Loading...
+        </div>
       </div>
     </div>
   );

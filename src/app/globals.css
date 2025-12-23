@@ -25,3 +25,38 @@ body {
   animation: marquee 40s linear infinite;
   will-change: transform;
 }
+
+/* Sound Wave Animation */
+@keyframes wave-horizontal {
+  0% {
+    d: path("M6 16 Q 12 16, 16 16 T 26 16");
+  }
+  12.5% {
+    d: path("M6 16 Q 12 14, 16 16 T 26 18");
+  }
+  25% {
+    d: path("M6 16 Q 12 13, 16 16 T 26 19");
+  }
+  37.5% {
+    d: path("M6 16 Q 12 14, 16 16 T 26 18");
+  }
+  50% {
+    d: path("M6 16 Q 12 16, 16 16 T 26 16");
+  }
+  62.5% {
+    d: path("M6 16 Q 12 18, 16 16 T 26 14");
+  }
+  75% {
+    d: path("M6 16 Q 12 19, 16 16 T 26 13");
+  }
+  87.5% {
+    d: path("M6 16 Q 12 18, 16 16 T 26 14");
+  }
+  100% {
+    d: path("M6 16 Q 12 16, 16 16 T 26 16");
+  }
+}
+
+.animate-wave-horizontal {
+  animation: wave-horizontal 1.5s linear infinite;
+}

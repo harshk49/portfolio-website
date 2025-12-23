@@ -6,12 +6,29 @@ import { gsap } from "gsap";
 import LoadingScreen from "./components/LoadingScreen";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
+import About from "./components/About";
+import Work from "./components/Work";
+import Experience from "./components/Experience";
+import Blog from "./components/Blog";
 import Footer from "./components/Footer";
 
 const Page = () => {
   const [loading, setLoading] = useState(true);
   const navbarRef = useRef<HTMLDivElement>(null);
   const loadingRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Disable scrolling when loading
+    if (loading) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [loading]);
 
   useEffect(() => {
     // Set initial position for smoother animation
@@ -38,6 +55,7 @@ const Page = () => {
           ease: "expo.inOut",
           force3D: true,
           transformOrigin: "center top",
+          scaleX: 1,
         });
       }
     }, 3000); // Start animation after 3 seconds
@@ -46,11 +64,15 @@ const Page = () => {
   }, []);
 
   return (
-    <div className="relative">
+    <div className="relative overflow-x-hidden">
       {/* Main Content - Always rendered so it appears behind loading screen */}
       <div className="relative">
         <Navbar ref={navbarRef} />
         <Hero navbarRef={navbarRef} />
+        <About />
+        <Work />
+        <Experience />
+        <Blog />
         <Footer />
       </div>
 
@@ -58,7 +80,7 @@ const Page = () => {
       {loading && (
         <div
           ref={loadingRef}
-          className="fixed inset-0 z-50 overflow-hidden"
+          className="fixed inset-0 z-50 overflow-hidden w-screen"
           style={{ willChange: "transform, border-radius" }}
         >
           <LoadingScreen />
