@@ -69,8 +69,9 @@ const Page = () => {
       <div className="relative">
         <Navbar ref={navbarRef} />
         <Hero navbarRef={navbarRef} />
-        <About />
         <Work />
+        <About />
+
         <Experience />
         <Blog />
         <Footer />

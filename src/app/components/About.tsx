@@ -111,12 +111,12 @@ const About = () => {
   return (
     <section
       ref={sectionRef}
-      className="min-h-screen bg-white text-black flex items-center justify-center px-6 py-20"
+      className="min-h-screen bg-black text-white flex items-center justify-center px-6 py-20"
     >
       <div className="max-w-6xl w-full">
         <h2
           ref={headingRef}
-          className="text-5xl md:text-7xl font-bold mb-12 clash-grotesk"
+          className="mb-16 font-['Clash_Grotesk'] text-5xl font-semibold md:text-6xl lg:text-7xl"
         >
           About Me
         </h2>

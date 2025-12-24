@@ -30,7 +30,12 @@ const Footer = () => {
       <div className="flex-1 flex flex-col justify-center w-full">
         {/* Contact Section - Centered */}
         <div className="mx-auto w-full max-w-7xl px-6 md:px-12 lg:px-24">
-          <h2 className="text-5xl lg:text-7xl font-bold mb-12">Contact</h2>
+          <h2
+            className="mb-6 font-['Clash_Grotesk'] text-5xl font-normal md:text-6xl lg:text-7xl"
+            style={{ color: "#D72631" }}
+          >
+            Contact
+          </h2>
 
           <div className="grid grid-cols-2 gap-y-6 text-xl lg:text-2xl">
             <div className="text-white/60">Email</div>
@@ -48,7 +53,7 @@ const Footer = () => {
               rel="noopener noreferrer"
               className="text-white text-right hover:text-white/70 transition-colors"
             >
-              /in/harsh-kardile
+              in/harsh-kardile
             </a>
 
             <div className="text-white/60">Medium</div>
@@ -58,7 +63,7 @@ const Footer = () => {
               rel="noopener noreferrer"
               className="text-white text-right hover:text-white/70 transition-colors"
             >
-              /@harshkardile
+              @harshkardile
             </a>
 
             <div className="text-white/60">GitHub</div>
@@ -68,7 +73,7 @@ const Footer = () => {
               rel="noopener noreferrer"
               className="text-white text-right hover:text-white/70 transition-colors"
             >
-              /harshk49
+              harshk49
             </a>
 
             <div className="text-white/60">Instagram</div>
@@ -85,8 +90,13 @@ const Footer = () => {
       </div>
 
       {/* When the Work Stops Section - Centered */}
-      <div className="mx-auto w-full max-w-7xl px-6 md:px-12 lg:px-24 mb-8">
-        <h2 className="text-3xl lg:text-5xl font-bold">When the Work Stops</h2>
+      <div className="mx-auto w-full max-w-7xl px-6 md:px-12 lg:px-24 mb-12">
+        <h2
+          className="text-xl lg:text-3xl font-normal"
+          style={{ color: "#D72631" }}
+        >
+          When the Work Stops
+        </h2>
       </div>
 
       {/* Continuous Marquee Slider with Images */}
@@ -131,6 +141,16 @@ const Footer = () => {
             ))}
           </div>
         </div>
+      </div>
+
+      {/* Quote Section */}
+      <div className="w-full px-6 md:px-8 pb-6">
+        <p
+          className="text-xl lg:text-2xl font-medium italic text-center"
+          style={{ color: "#FFF" }}
+        >
+          &quot;If you know quality, you know where to find it.&quot;
+        </p>
       </div>
 
       {/* Decorative Element - Subtle gradient */}
