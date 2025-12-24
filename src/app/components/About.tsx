@@ -6,33 +6,13 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-interface Skill {
-  name: string;
-  category: string;
-  level: number;
-}
-
-const skills: Skill[] = [
-  { name: "React", category: "Frontend", level: 95 },
-  { name: "Next.js", category: "Frontend", level: 90 },
-  { name: "TypeScript", category: "Frontend", level: 90 },
-  { name: "JavaScript", category: "Frontend", level: 95 },
-  { name: "Tailwind CSS", category: "Frontend", level: 90 },
-  { name: "GSAP", category: "Animation", level: 85 },
-  { name: "Node.js", category: "Backend", level: 80 },
-  { name: "Express", category: "Backend", level: 80 },
-  { name: "MongoDB", category: "Database", level: 75 },
-  { name: "PostgreSQL", category: "Database", level: 75 },
-  { name: "Git", category: "Tools", level: 90 },
-  { name: "Docker", category: "Tools", level: 70 },
-];
-
 const About = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const skillsHeadingRef = useRef<HTMLHeadingElement>(null);
-  const skillsRef = useRef<HTMLDivElement[]>([]);
+  const horizontalScrollRef = useRef<HTMLDivElement>(null);
+  const expertiseContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -79,139 +59,164 @@ const About = () => {
         },
       });
 
-      // Animate each skill card
-      skillsRef.current.forEach((skill, index) => {
-        if (skill) {
-          gsap.from(skill, {
-            y: 40,
-            opacity: 0,
-            duration: 0.6,
-            delay: index * 0.05,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: skill,
-              start: "top 90%",
-              end: "top 70%",
-              toggleActions: "play none none reverse",
-            },
-          });
-        }
-      });
+      // Horizontal scroll animation
+      if (horizontalScrollRef.current && expertiseContainerRef.current) {
+        const scrollWidth = horizontalScrollRef.current.scrollWidth;
+        const containerWidth = horizontalScrollRef.current.offsetWidth;
+        const scrollDistance = scrollWidth - containerWidth;
+
+        gsap.to(horizontalScrollRef.current, {
+          x: -scrollDistance,
+          ease: "none",
+          scrollTrigger: {
+            trigger: expertiseContainerRef.current,
+            start: "top 10%",
+            end: () => `+=${scrollDistance * 2}`,
+            scrub: 1,
+            pin: true,
+            anticipatePin: 1,
+          },
+        });
+      }
     }, sectionRef);
 
     return () => ctx.revert();
   }, []);
 
-  const addToRefs = (el: HTMLDivElement) => {
-    if (el && !skillsRef.current.includes(el)) {
-      skillsRef.current.push(el);
-    }
-  };
-
   return (
-    <section
-      ref={sectionRef}
-      className="min-h-screen bg-black text-white flex items-center justify-center px-6 py-20"
-    >
-      <div className="max-w-6xl w-full">
-        <h2
-          ref={headingRef}
-          className="mb-16 font-['Clash_Grotesk'] text-5xl font-semibold md:text-6xl lg:text-7xl"
-        >
-          About Me
-        </h2>
-
-        <div ref={contentRef} className="space-y-6">
-          <p className="text-xl md:text-2xl text-gray-700 satoshi leading-relaxed">
-            I'm a passionate developer who loves creating beautiful and
-            functional web experiences. With a focus on modern technologies and
-            clean design, I bring ideas to life through code.
-          </p>
-
-          <p className="text-xl md:text-2xl text-gray-700 satoshi leading-relaxed">
-            My expertise spans across frontend development, with a particular
-            interest in creating smooth animations and intuitive user interfaces
-            that make a lasting impression.
-          </p>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
-            <div className="border border-gray-300 p-6 rounded-lg hover:border-gray-500 transition-colors">
-              <h3 className="text-2xl font-bold clash-grotesk mb-2">5+</h3>
-              <p className="text-gray-600 satoshi">Years Experience</p>
-            </div>
-            <div className="border border-gray-300 p-6 rounded-lg hover:border-gray-500 transition-colors">
-              <h3 className="text-2xl font-bold clash-grotesk mb-2">50+</h3>
-              <p className="text-gray-600 satoshi">Projects Completed</p>
-            </div>
-            <div className="border border-gray-300 p-6 rounded-lg hover:border-gray-500 transition-colors">
-              <h3 className="text-2xl font-bold clash-grotesk mb-2">30+</h3>
-              <p className="text-gray-600 satoshi">Happy Clients</p>
-            </div>
-            <div className="border border-gray-300 p-6 rounded-lg hover:border-gray-500 transition-colors">
-              <h3 className="text-2xl font-bold clash-grotesk mb-2">10+</h3>
-              <p className="text-gray-600 satoshi">Technologies</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Skills & Tech Stack Section */}
-        <div className="mt-20">
-          <h3
-            ref={skillsHeadingRef}
-            className="text-3xl md:text-5xl font-bold mb-8 clash-grotesk"
+    <>
+      <section
+        ref={sectionRef}
+        className="min-h-screen bg-black text-white flex items-center justify-center px-6 py-20"
+      >
+        <div className="max-w-6xl w-full">
+          <h2
+            ref={headingRef}
+            className="mb-16 font-['Clash_Grotesk'] text-5xl font-normal md:text-6xl lg:text-7xl"
+            style={{ color: "#D72631" }}
           >
-            Skills & Technologies
-          </h3>
+            The Brief
+          </h2>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {skills.map((skill, index) => (
-              <div
-                key={index}
-                ref={addToRefs}
-                className="group relative border border-gray-200 rounded-xl p-4 hover:border-gray-900 transition-all hover:shadow-md"
-              >
-                <div className="flex flex-col">
-                  <span className="text-xs text-gray-500 mb-1 satoshi">
-                    {skill.category}
-                  </span>
-                  <span className="text-lg font-semibold clash-grotesk mb-2">
-                    {skill.name}
-                  </span>
+          <div ref={contentRef} className="space-y-6">
+            <p className="text-xl md:text-2xl text-white satoshi leading-relaxed">
+              I&apos;m a passionate developer who loves creating beautiful and
+              functional web experiences. With a focus on modern technologies
+              and clean design, I bring ideas to life through code.
+            </p>
 
-                  {/* Progress Bar */}
-                  <div className="w-full h-1.5 bg-gray-200 rounded-full overflow-hidden">
-                    <div
-                      className="h-full bg-gray-900 transition-all duration-1000 ease-out"
-                      style={{
-                        width: `${skill.level}%`,
-                      }}
-                    />
-                  </div>
-
-                  <span className="text-xs text-gray-500 mt-1 text-right satoshi">
-                    {skill.level}%
-                  </span>
-                </div>
-              </div>
-            ))}
+            <p className="text-xl md:text-2xl text-white satoshi leading-relaxed">
+              My expertise spans across frontend development, with a particular
+              interest in creating smooth animations and intuitive user
+              interfaces that make a lasting impression.
+            </p>
           </div>
 
-          {/* Tech Categories */}
-          <div className="mt-12 flex flex-wrap gap-3 justify-center">
-            {["Frontend", "Backend", "Database", "Animation", "Tools"].map(
-              (category) => (
-                <span
-                  key={category}
-                  className="px-4 py-2 border border-gray-300 rounded-full text-sm satoshi hover:bg-gray-900 hover:text-white hover:border-gray-900 transition-colors cursor-default"
+          {/* Principles Section */}
+          <div className="mt-20">
+            <h3
+              className="text-3xl md:text-4xl lg:text-5xl font-normal font-['Clash_Grotesk'] mb-8"
+              style={{ color: "#D72631" }}
+            >
+              Principles
+            </h3>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {[
+                {
+                  number: 1,
+                  title: "Clarity over cleverness",
+                  description:
+                    "Code is read far more than it's written. If it's impressive but confusing, it's wrong.",
+                },
+                {
+                  number: 2,
+                  title: "Build for change, not perfection",
+                  description:
+                    "Requirements evolve. Good systems expect it instead of fighting it.",
+                },
+                {
+                  number: 3,
+                  title: "Details decide outcomes",
+                  description:
+                    "Edge cases, naming, and structure are where quality actually lives.",
+                },
+              ].map((principle) => (
+                <div
+                  key={principle.number}
+                  className="border border-white rounded-lg p-8 min-h-[200px] flex flex-col"
                 >
-                  {category}
-                </span>
-              )
-            )}
+                  <span className="principle-number text-9xl font-semibold font-['Clash_Grotesk'] relative leading-none mb-4">
+                    {principle.number}
+                  </span>
+                  <h4 className="text-xl font-semibold font-['Clash_Grotesk'] mb-3 text-white">
+                    {principle.title}
+                  </h4>
+                  <p className="text-gray-400 satoshi text-base leading-relaxed">
+                    {principle.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Skills & Tech Stack Section */}
+          <div ref={expertiseContainerRef} className="mt-20 min-h-screen">
+            <h3
+              ref={skillsHeadingRef}
+              className="text-3xl md:text-4xl lg:text-5xl font-normal font-['Clash_Grotesk'] mb-8"
+              style={{ color: "#D72631" }}
+            >
+              Expertise
+            </h3>
+
+            <div className="overflow-hidden">
+              <div
+                ref={horizontalScrollRef}
+                className="flex gap-0 whitespace-nowrap"
+              >
+                {[1, 2, 3, 4].map((num) => (
+                  <div
+                    key={num}
+                    className="border border-white p-8 w-[450px] h-[450px] flex items-center justify-center flex-shrink-0"
+                  >
+                    <span className="text-2xl font-medium font-['Clash_Grotesk'] text-white">
+                      Box {num}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <style jsx>{`
+        .principle-number {
+          -webkit-text-stroke: 2px #d72631;
+          -webkit-text-fill-color: transparent;
+          color: transparent;
+          position: relative;
+          background: repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 6px,
+            #d72631 6px,
+            #d72631 8px
+          );
+          -webkit-background-clip: text;
+          background-clip: text;
+        }
+
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
+    </>
   );
 };
 

@@ -92,7 +92,7 @@ const Footer = () => {
       {/* When the Work Stops Section - Centered */}
       <div className="mx-auto w-full max-w-7xl px-6 md:px-12 lg:px-24 mb-12">
         <h2
-          className="text-xl lg:text-3xl font-normal"
+          className="font-['Clash_Grotesk'] text-xl lg:text-3xl font-normal"
           style={{ color: "#D72631" }}
         >
           When the Work Stops

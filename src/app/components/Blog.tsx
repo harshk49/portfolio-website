@@ -84,6 +84,7 @@ const Blog = () => {
   const headingRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const postsRef = useRef<HTMLDivElement[]>([]);
+  const cardsRef = useRef<(HTMLElement | null)[]>([]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -139,10 +140,14 @@ const Blog = () => {
     return () => ctx.revert();
   }, []);
 
-  const addToRefs = (el: HTMLDivElement) => {
-    if (el && !postsRef.current.includes(el)) {
-      postsRef.current.push(el);
-    }
+  const handleCardMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    card.style.setProperty("--mouse-x", `${x}px`);
+    card.style.setProperty("--mouse-y", `${y}px`);
   };
 
   return (
@@ -156,9 +161,10 @@ const Blog = () => {
         <div className="mb-16">
           <h2
             ref={headingRef}
-            className="mb-4 font-['Clash_Grotesk'] text-5xl font-semibold md:text-6xl lg:text-7xl"
+            className="mb-4 font-['Clash_Grotesk'] text-5xl font-normal md:text-6xl lg:text-7xl"
+            style={{ color: "#FF3B30" }}
           >
-            Blog
+            Blogs
           </h2>
           <p ref={subtitleRef} className="text-lg text-gray-600 md:text-xl">
             Thoughts on design, development, and everything in between
@@ -167,11 +173,20 @@ const Blog = () => {
 
         {/* Blog Posts Grid */}
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {blogPosts.map((post) => (
+          {blogPosts.map((post, index) => (
             <article
               key={post.id}
-              ref={addToRefs}
-              className="group cursor-pointer rounded-2xl border border-gray-200 bg-white p-6 transition-all hover:border-gray-900 hover:shadow-lg"
+              ref={(el) => {
+                if (el && !postsRef.current.includes(el as HTMLDivElement)) {
+                  postsRef.current.push(el as HTMLDivElement);
+                }
+                cardsRef.current[index] = el;
+              }}
+              className="blog-card group cursor-pointer rounded-2xl border-2 border-gray-200 bg-white p-6 relative transition-all duration-300 ease-out hover:scale-[1.02] hover:-translate-y-1"
+              onMouseMove={handleCardMouseMove}
+              style={{
+                background: "white",
+              }}
             >
               {/* Category Badge */}
               <div className="mb-4 inline-block rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700">
@@ -179,7 +194,7 @@ const Blog = () => {
               </div>
 
               {/* Title */}
-              <h3 className="mb-3 font-['Clash_Grotesk'] text-xl font-semibold leading-tight transition-colors group-hover:text-gray-600 md:text-2xl">
+              <h3 className="mb-3 font-['Clash_Grotesk'] text-xl font-semibold leading-tight md:text-2xl">
                 {post.title}
               </h3>
 
@@ -226,7 +241,10 @@ const Blog = () => {
               </div>
 
               {/* Read More Link */}
-              <div className="mt-4 flex items-center gap-2 text-sm font-medium text-gray-900 opacity-0 transition-opacity group-hover:opacity-100">
+              <div
+                className="mt-4 flex items-center gap-2 text-sm font-medium opacity-0 transition-opacity group-hover:opacity-100"
+                style={{ color: "#FF3B30" }}
+              >
                 Read article
                 <svg
                   className="h-4 w-4 transition-transform group-hover:translate-x-1"
@@ -246,12 +264,12 @@ const Blog = () => {
           ))}
         </div>
 
-        {/* View All Button */}
-        <div className="mt-12 text-center">
-          <button className="group inline-flex items-center gap-2 rounded-full border-2 border-gray-900 px-8 py-4 font-medium transition-all hover:bg-gray-900 hover:text-white">
-            View All Articles
+        {/* Modern Button */}
+        <div className="mt-16 flex justify-center">
+          <button className="modern-btn group relative inline-flex items-center gap-3 rounded-full px-8 py-4 text-sm font-medium transition-all duration-300 hover:gap-4">
+            <span className="relative z-10">View All Articles</span>
             <svg
-              className="h-4 w-4 transition-transform group-hover:translate-x-1"
+              className="relative z-10 h-4 w-4 transition-all duration-300 group-hover:translate-x-1 group-hover:scale-110"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -266,6 +284,82 @@ const Blog = () => {
           </button>
         </div>
       </div>
+
+      <style jsx>{`
+        .blog-card {
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+          will-change: transform;
+        }
+
+        .blog-card:hover {
+          box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+            0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .blog-card::before {
+          content: "";
+          position: absolute;
+          inset: -2px;
+          border-radius: 1rem;
+          padding: 2px;
+          background: radial-gradient(
+            400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+            rgba(255, 59, 48, 0.8),
+            transparent 40%
+          );
+          -webkit-mask: linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+          -webkit-mask-composite: xor;
+          mask-composite: exclude;
+          pointer-events: none;
+          opacity: 0;
+          transition: opacity 0.3s;
+        }
+
+        .blog-card:hover::before {
+          opacity: 1;
+        }
+
+        .modern-btn {
+          color: #1a1a1a;
+          background: transparent;
+          border: 1.5px solid #ff3b30;
+          overflow: hidden;
+          position: relative;
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .modern-btn:hover {
+          color: #ffffff;
+          background: #ff3b30;
+          border-color: #ff3b30;
+          box-shadow: 0 10px 30px rgba(255, 59, 48, 0.3),
+            0 0 0 1px rgba(255, 59, 48, 0.1);
+          transform: translateY(-2px);
+        }
+
+        .modern-btn::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.2),
+            transparent
+          );
+          transition: left 0.5s ease;
+          z-index: 1;
+          pointer-events: none;
+        }
+
+        .modern-btn:hover::after {
+          left: 100%;
+        }
+      `}</style>
     </section>
   );
 };
