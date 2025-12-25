@@ -317,7 +317,8 @@ const Hero = ({ navbarRef }: HeroProps) => {
           ref={scrollDownRef}
           className="absolute bottom-4 left-1/2 -translate-x-1/2 invisible opacity-0 select-none pointer-events-none"
         >
-          <div className="text-black text-sm font-light tracking-wider">
+          <div className="text-black text-sm font-light tracking-wider flex items-center gap-2">
+            <span className="w-8 h-[1px] bg-[#FF3B30]"></span>
             SCROLL DOWN
           </div>
         </div>
@@ -331,7 +332,7 @@ const Hero = ({ navbarRef }: HeroProps) => {
             href="https://linkedin.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-800 hover:text-black transition-colors duration-300"
+            className="text-gray-800 hover:text-[#FF3B30] transition-colors duration-300"
           >
             <BsLinkedin size={20} />
           </a>
@@ -339,7 +340,7 @@ const Hero = ({ navbarRef }: HeroProps) => {
             href="https://wa.me/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-800 hover:text-black transition-colors duration-300"
+            className="text-gray-800 hover:text-[#FF3B30] transition-colors duration-300"
           >
             <BsWhatsapp size={20} />
           </a>
@@ -347,7 +348,7 @@ const Hero = ({ navbarRef }: HeroProps) => {
             href="https://github.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-800 hover:text-black transition-colors duration-300"
+            className="text-gray-800 hover:text-[#FF3B30] transition-colors duration-300"
           >
             <FaGithub size={20} />
           </a>
@@ -360,9 +361,9 @@ const Hero = ({ navbarRef }: HeroProps) => {
             className="relative group w-14 h-14 rounded-full bg-black flex items-center justify-center transition-all duration-300 cursor-pointer"
             aria-label="Toggle sound wave animation"
           >
-            {/* Neon rainbow radiant glow effect */}
+            {/* Neon red glow effect */}
             <div
-              className={`absolute inset-0 rounded-full bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500 blur-xl transition-opacity duration-300 ${
+              className={`absolute inset-0 rounded-full bg-[#FF3B30] blur-xl transition-opacity duration-300 ${
                 isWavePlaying
                   ? "opacity-60 group-hover:opacity-90 animate-pulse"
                   : "opacity-30"

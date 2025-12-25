@@ -71,7 +71,7 @@ const About = () => {
           scrollTrigger: {
             trigger: expertiseContainerRef.current,
             start: "top 10%",
-            end: () => `+=${scrollDistance * 2}`,
+            end: () => `+=${scrollDistance * 3}`,
             scrub: 1,
             pin: true,
             anticipatePin: 1,
@@ -161,7 +161,7 @@ const About = () => {
           </div>
 
           {/* Skills & Tech Stack Section */}
-          <div ref={expertiseContainerRef} className="mt-20 min-h-screen">
+          <div ref={expertiseContainerRef} className="mt-20">
             <h3
               ref={skillsHeadingRef}
               className="text-3xl md:text-4xl lg:text-5xl font-normal font-['Clash_Grotesk'] mb-8"
