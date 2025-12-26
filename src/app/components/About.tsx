@@ -93,7 +93,7 @@ const About = () => {
           <h2
             ref={headingRef}
             className="mb-16 font-['Clash_Grotesk'] text-5xl font-normal md:text-6xl lg:text-7xl"
-            style={{ color: "#D72631" }}
+            style={{ color: "#1F8BFF" }}
           >
             The Brief
           </h2>
@@ -116,7 +116,7 @@ const About = () => {
           <div className="mt-20">
             <h3
               className="text-3xl md:text-4xl lg:text-5xl font-normal font-['Clash_Grotesk'] mb-8"
-              style={{ color: "#D72631" }}
+              style={{ color: "#1F8BFF" }}
             >
               Principles
             </h3>
@@ -144,15 +144,15 @@ const About = () => {
               ].map((principle) => (
                 <div
                   key={principle.number}
-                  className="border border-white rounded-lg p-8 min-h-[200px] flex flex-col"
+                  className="bg-white border border-gray-200 rounded-lg p-8 min-h-[200px] flex flex-col"
                 >
                   <span className="principle-number text-9xl font-semibold font-['Clash_Grotesk'] relative leading-none mb-4">
                     {principle.number}
                   </span>
-                  <h4 className="text-xl font-semibold font-['Clash_Grotesk'] mb-3 text-white">
+                  <h4 className="text-xl font-semibold font-['Clash_Grotesk'] mb-3 text-black">
                     {principle.title}
                   </h4>
-                  <p className="text-gray-400 satoshi text-base leading-relaxed">
+                  <p className="text-gray-600 satoshi text-base leading-relaxed">
                     {principle.description}
                   </p>
                 </div>
@@ -165,7 +165,7 @@ const About = () => {
             <h3
               ref={skillsHeadingRef}
               className="text-3xl md:text-4xl lg:text-5xl font-normal font-['Clash_Grotesk'] mb-8"
-              style={{ color: "#D72631" }}
+              style={{ color: "#1F8BFF" }}
             >
               Expertise
             </h3>
@@ -193,7 +193,7 @@ const About = () => {
 
       <style jsx>{`
         .principle-number {
-          -webkit-text-stroke: 2px #d72631;
+          -webkit-text-stroke: 2px #1f8bff;
           -webkit-text-fill-color: transparent;
           color: transparent;
           position: relative;
@@ -201,8 +201,8 @@ const About = () => {
             45deg,
             transparent,
             transparent 6px,
-            #d72631 6px,
-            #d72631 8px
+            #1f8bff 6px,
+            #1f8bff 8px
           );
           -webkit-background-clip: text;
           background-clip: text;

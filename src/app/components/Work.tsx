@@ -185,7 +185,7 @@ const Work = () => {
         <h2
           ref={headingRef}
           className="mb-6 font-['Clash_Grotesk'] text-5xl font-normal md:text-6xl lg:text-7xl"
-          style={{ color: "#FF3B30" }}
+          style={{ color: "#0B5ED7" }}
         >
           Selected Work
         </h2>
@@ -213,7 +213,7 @@ const Work = () => {
                 {/* Serial Number */}
                 <span
                   className="font-['Clash_Grotesk'] text-4xl font-light transition-all duration-300 md:text-5xl lg:text-6xl"
-                  style={{ color: "#FF3B30" }}
+                  style={{ color: "#0B5ED7" }}
                 >
                   {String(index + 1).padStart(2, "0")}
                 </span>

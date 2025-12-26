@@ -32,7 +32,7 @@ const Footer = () => {
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 md:px-12 lg:px-24">
           <h2
             className="mb-4 sm:mb-6 md:mb-8 font-['Clash_Grotesk'] text-3xl font-normal sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl"
-            style={{ color: "#D72631" }}
+            style={{ color: "#1F8BFF" }}
           >
             Contact
           </h2>
@@ -45,7 +45,7 @@ const Footer = () => {
             >
               <span className="relative">
                 harshkardile49@gmail.com
-                <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#D72631] transition-all duration-300 group-hover:w-full"></span>
+                <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#1F8BFF] transition-all duration-300 group-hover:w-full"></span>
               </span>
             </a>
 
@@ -58,7 +58,7 @@ const Footer = () => {
             >
               <span className="relative">
                 in/harsh-kardile
-                <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#D72631] transition-all duration-300 group-hover:w-full"></span>
+                <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#1F8BFF] transition-all duration-300 group-hover:w-full"></span>
               </span>
             </a>
 
@@ -71,7 +71,7 @@ const Footer = () => {
             >
               <span className="relative">
                 @harshkardile
-                <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#D72631] transition-all duration-300 group-hover:w-full"></span>
+                <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#1F8BFF] transition-all duration-300 group-hover:w-full"></span>
               </span>
             </a>
 
@@ -84,7 +84,7 @@ const Footer = () => {
             >
               <span className="relative">
                 harshk49
-                <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#D72631] transition-all duration-300 group-hover:w-full"></span>
+                <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#1F8BFF] transition-all duration-300 group-hover:w-full"></span>
               </span>
             </a>
 
@@ -97,7 +97,7 @@ const Footer = () => {
             >
               <span className="relative">
                 harsh_kardile49
-                <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#D72631] transition-all duration-300 group-hover:w-full"></span>
+                <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#1F8BFF] transition-all duration-300 group-hover:w-full"></span>
               </span>
             </a>
           </div>
@@ -108,7 +108,7 @@ const Footer = () => {
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 md:px-12 lg:px-24 mb-4 sm:mb-6 md:mb-8">
         <h2
           className="font-['Clash_Grotesk'] text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-normal"
-          style={{ color: "#D72631" }}
+          style={{ color: "#1F8BFF" }}
         >
           When the Work Stops
         </h2>

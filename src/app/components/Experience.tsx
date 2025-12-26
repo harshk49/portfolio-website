@@ -158,8 +158,8 @@ const Experience = () => {
         {/* Section Heading */}
         <h2
           ref={headingRef}
-          className="mb-16 font-['Clash_Grotesk'] text-5xl font-normal md:text-6xl lg:text-7xl"
-          style={{ color: "#D72631" }}
+          className="mb-16 font-['Clash_Grotesk'] text-5xl font-normalppp md:text-6xl lg:text-7xl"
+          style={{ color: "#1F8BFF" }}
         >
           Experience
         </h2>
@@ -170,7 +170,7 @@ const Experience = () => {
           <div
             ref={timelineRef}
             className="absolute left-4 top-0 hidden h-full w-0.5 md:left-1/2 md:block"
-            style={{ backgroundColor: "#D72631" }}
+            style={{ backgroundColor: "#1F8BFF" }}
           />
 
           {/* Experience Items */}
@@ -186,7 +186,7 @@ const Experience = () => {
                 {/* Timeline Dot */}
                 <div
                   className="absolute left-4 hidden h-4 w-4 -translate-x-1/2 transform rounded-full border-4 bg-black md:left-1/2 md:top-8 md:block"
-                  style={{ borderColor: "#D72631" }}
+                  style={{ borderColor: "#1F8BFF" }}
                 />
 
                 {/* Content Card */}
@@ -195,7 +195,7 @@ const Experience = () => {
                     index % 2 === 0 ? "md:pr-12" : "md:pl-12"
                   }`}
                 >
-                  <div className="rounded-2xl border border-gray-800 bg-black p-6 shadow-sm transition-all hover:border-[#D72631] md:p-8">
+                  <div className="rounded-2xl border border-gray-800 bg-black p-6 shadow-sm transition-all hover:border-[#1F8BFF] md:p-8">
                     {/* Header */}
                     <div className="mb-4">
                       <h3 className="mb-1 font-['Clash_Grotesk'] text-2xl font-semibold md:text-3xl text-white">
@@ -262,7 +262,7 @@ const Experience = () => {
                           <li key={idx} className="flex gap-2">
                             <span
                               className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full"
-                              style={{ backgroundColor: "#D72631" }}
+                              style={{ backgroundColor: "#1F8BFF" }}
                             />
                             <span>{item}</span>
                           </li>
@@ -279,7 +279,7 @@ const Experience = () => {
                         {experience.technologies.map((tech, idx) => (
                           <span
                             key={idx}
-                            className="rounded-full border border-gray-700 px-3 py-1 text-sm text-gray-300 hover:border-[#D72631] transition-colors"
+                            className="rounded-full border border-gray-700 px-3 py-1 text-sm text-gray-300 hover:border-[#1F8BFF] transition-colors"
                           >
                             {tech}
                           </span>

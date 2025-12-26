@@ -162,7 +162,7 @@ const Blog = () => {
           <h2
             ref={headingRef}
             className="mb-4 font-['Clash_Grotesk'] text-5xl font-normal md:text-6xl lg:text-7xl"
-            style={{ color: "#FF3B30" }}
+            style={{ color: "#0B5ED7" }}
           >
             Blogs
           </h2>
@@ -243,7 +243,7 @@ const Blog = () => {
               {/* Read More Link */}
               <div
                 className="mt-4 flex items-center gap-2 text-sm font-medium opacity-0 transition-opacity group-hover:opacity-100"
-                style={{ color: "#FF3B30" }}
+                style={{ color: "#0B5ED7" }}
               >
                 Read article
                 <svg
@@ -304,7 +304,7 @@ const Blog = () => {
           padding: 2px;
           background: radial-gradient(
             400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-            rgba(255, 59, 48, 0.8),
+            rgba(11, 94, 215, 0.8),
             transparent 40%
           );
           -webkit-mask: linear-gradient(#fff 0 0) content-box,
@@ -323,7 +323,7 @@ const Blog = () => {
         .modern-btn {
           color: #1a1a1a;
           background: transparent;
-          border: 1.5px solid #ff3b30;
+          border: 1.5px solid #0b5ed7;
           overflow: hidden;
           position: relative;
           transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -331,10 +331,10 @@ const Blog = () => {
 
         .modern-btn:hover {
           color: #ffffff;
-          background: #ff3b30;
-          border-color: #ff3b30;
-          box-shadow: 0 10px 30px rgba(255, 59, 48, 0.3),
-            0 0 0 1px rgba(255, 59, 48, 0.1);
+          background: #0b5ed7;
+          border-color: #0b5ed7;
+          box-shadow: 0 10px 30px rgba(11, 94, 215, 0.3),
+            0 0 0 1px rgba(11, 94, 215, 0.1);
           transform: translateY(-2px);
         }
 

@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { gsap } from "gsap";
+import Lenis from "lenis";
 
 import LoadingScreen from "./components/LoadingScreen";
 import Navbar from "./components/Navbar";
@@ -16,6 +17,30 @@ const Page = () => {
   const [loading, setLoading] = useState(true);
   const navbarRef = useRef<HTMLDivElement>(null);
   const loadingRef = useRef<HTMLDivElement>(null);
+
+  // Initialize smooth scrolling with Lenis
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: "vertical",
+      smoothWheel: true,
+      wheelMultiplier: 0.8,
+      touchMultiplier: 1.5,
+      infinite: false,
+    });
+
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
 
   useEffect(() => {
     // Disable scrolling when loading
