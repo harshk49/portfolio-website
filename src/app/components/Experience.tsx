@@ -156,21 +156,23 @@ const Experience = () => {
     >
       <div className="mx-auto max-w-7xl">
         {/* Section Heading */}
-        <h2
-          ref={headingRef}
-          className="mb-16 font-['Clash_Grotesk'] text-5xl font-normalppp md:text-6xl lg:text-7xl"
-          style={{ color: "#1F8BFF" }}
-        >
-          Experience
-        </h2>
+        <div className="mb-20">
+          <h2
+            ref={headingRef}
+            className="mb-4 font-['Clash_Grotesk'] text-5xl font-normal md:text-6xl lg:text-7xl"
+            style={{ color: "#1F8BFF" }}
+          >
+            Experience
+          </h2>
+          <div className="h-1 w-24 bg-gradient-to-r from-[#1F8BFF] to-transparent rounded-full" />
+        </div>
 
         {/* Timeline Container */}
         <div className="relative">
           {/* Timeline Line */}
           <div
             ref={timelineRef}
-            className="absolute left-4 top-0 hidden h-full w-0.5 md:left-1/2 md:block"
-            style={{ backgroundColor: "#1F8BFF" }}
+            className="absolute left-4 top-0 hidden h-full w-[2px] md:left-1/2 md:block bg-gradient-to-b from-[#1F8BFF] via-[#1F8BFF]/60 to-[#1F8BFF]/20 shadow-[0_0_10px_rgba(31,139,255,0.5)]"
           />
 
           {/* Experience Items */}
@@ -184,106 +186,117 @@ const Experience = () => {
                 }`}
               >
                 {/* Timeline Dot */}
-                <div
-                  className="absolute left-4 hidden h-4 w-4 -translate-x-1/2 transform rounded-full border-4 bg-black md:left-1/2 md:top-8 md:block"
-                  style={{ borderColor: "#1F8BFF" }}
-                />
-
+                {/* Timeline Dot */}
+                <div className="absolute left-4 hidden h-5 w-5 -translate-x-1/2 transform md:left-1/2 md:top-8 md:block">
+                  <div className="h-full w-full rounded-full border-[3px] border-[#1F8BFF] bg-black shadow-[0_0_15px_rgba(31,139,255,0.8)]">
+                    <div className="h-full w-full animate-ping rounded-full bg-[#1F8BFF] opacity-20" />
+                  </div>
+                </div>
                 {/* Content Card */}
                 <div
                   className={`w-full md:w-[calc(50%-2rem)] ${
                     index % 2 === 0 ? "md:pr-12" : "md:pl-12"
                   }`}
                 >
-                  <div className="rounded-2xl border border-gray-800 bg-black p-6 shadow-sm transition-all hover:border-[#1F8BFF] md:p-8">
-                    {/* Header */}
-                    <div className="mb-4">
-                      <h3 className="mb-1 font-['Clash_Grotesk'] text-2xl font-semibold md:text-3xl text-white">
-                        {experience.role}
-                      </h3>
-                      <p className="mb-2 text-lg font-medium text-gray-300">
-                        {experience.company}
-                      </p>
-                      <div className="flex flex-wrap gap-2 text-sm text-gray-400">
-                        <span className="flex items-center gap-1">
-                          <svg
-                            className="h-4 w-4"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                            />
-                          </svg>
-                          {experience.period}
-                        </span>
-                        <span className="text-gray-400">•</span>
-                        <span className="flex items-center gap-1">
-                          <svg
-                            className="h-4 w-4"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                            />
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                            />
-                          </svg>
-                          {experience.location}
-                        </span>
-                      </div>
-                    </div>
+                  <div className="experience-card group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-[#0A0A0A] to-[#141414] p-6 shadow-lg transition-all duration-500 hover:border-[#1F8BFF]/50 hover:shadow-[0_8px_50px_rgba(31,139,255,0.2)] md:p-8">
+                    {/* Gradient overlay on hover */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#1F8BFF]/0 via-[#1F8BFF]/0 to-[#1F8BFF]/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-hover:from-[#1F8BFF]/5 group-hover:via-transparent group-hover:to-transparent" />
 
-                    {/* Description */}
-                    <p className="mb-4 text-gray-300">
-                      {experience.description}
-                    </p>
+                    {/* Top accent line */}
+                    <div className="absolute left-0 top-0 h-1 w-0 bg-gradient-to-r from-[#1F8BFF] to-[#60A5FA] transition-all duration-500 group-hover:w-full" />
 
-                    {/* Responsibilities */}
-                    <div className="mb-4">
-                      <h4 className="mb-2 font-semibold text-white">
-                        Key Responsibilities:
-                      </h4>
-                      <ul className="space-y-1.5 text-sm text-gray-300">
-                        {experience.responsibilities.map((item, idx) => (
-                          <li key={idx} className="flex gap-2">
-                            <span
-                              className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full"
-                              style={{ backgroundColor: "#1F8BFF" }}
-                            />
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                    {/* Decorative blur element */}
+                    <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-[#1F8BFF]/10 blur-3xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
-                    {/* Technologies */}
-                    <div>
-                      <h4 className="mb-2 font-semibold text-white">
-                        Technologies:
-                      </h4>
-                      <div className="flex flex-wrap gap-2">
-                        {experience.technologies.map((tech, idx) => (
-                          <span
-                            key={idx}
-                            className="rounded-full border border-gray-700 px-3 py-1 text-sm text-gray-300 hover:border-[#1F8BFF] transition-colors"
-                          >
-                            {tech}
+                    <div className="relative z-10">
+                      {/* Header */}
+                      <div className="mb-6">
+                        <h3 className="mb-2 font-['Clash_Grotesk'] text-2xl font-semibold text-white transition-colors duration-300 group-hover:text-[#1F8BFF] md:text-3xl">
+                          {experience.role}
+                        </h3>
+                        <p className="mb-3 font-['Clash_Grotesk'] text-lg font-medium text-gray-300 transition-colors duration-300 group-hover:text-white">
+                          {experience.company}
+                        </p>
+                        <div className="flex flex-wrap items-center gap-3 text-sm text-gray-400">
+                          <span className="flex items-center gap-1.5 rounded-full bg-white/5 px-3 py-1.5 backdrop-blur-sm transition-all duration-300 group-hover:bg-[#1F8BFF]/10 group-hover:text-gray-300">
+                            <svg
+                              className="h-3.5 w-3.5"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                              />
+                            </svg>
+                            {experience.period}
                           </span>
-                        ))}
+                          <span className="flex items-center gap-1.5 rounded-full bg-white/5 px-3 py-1.5 backdrop-blur-sm transition-all duration-300 group-hover:bg-[#1F8BFF]/10 group-hover:text-gray-300">
+                            <svg
+                              className="h-3.5 w-3.5"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                              />
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                              />
+                            </svg>
+                            {experience.location}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Description */}
+                      <p className="mb-6 leading-relaxed text-gray-400 transition-colors duration-300 group-hover:text-gray-300 satoshi">
+                        {experience.description}
+                      </p>
+
+                      {/* Responsibilities */}
+                      <div className="mb-6">
+                        <h4 className="mb-3 font-['Clash_Grotesk'] text-sm font-semibold uppercase tracking-wider text-[#1F8BFF]">
+                          Key Responsibilities
+                        </h4>
+                        <ul className="space-y-2.5 text-sm">
+                          {experience.responsibilities.map((item, idx) => (
+                            <li
+                              key={idx}
+                              className="flex gap-3 text-gray-400 transition-colors duration-300 group-hover:text-gray-300 satoshi"
+                            >
+                              <span className="mt-1.5 flex h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[#1F8BFF] shadow-[0_0_8px_rgba(31,139,255,0.6)]" />
+                              <span className="leading-relaxed">{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      {/* Technologies */}
+                      <div>
+                        <h4 className="mb-3 font-['Clash_Grotesk'] text-sm font-semibold uppercase tracking-wider text-[#1F8BFF]">
+                          Technologies
+                        </h4>
+                        <div className="flex flex-wrap gap-2">
+                          {experience.technologies.map((tech, idx) => (
+                            <span
+                              key={idx}
+                              className="rounded-full border border-white/10 bg-white/5 px-3.5 py-1.5 text-sm text-gray-300 backdrop-blur-sm transition-all duration-300 hover:border-[#1F8BFF]/50 hover:bg-[#1F8BFF]/10 hover:text-white hover:shadow-[0_0_15px_rgba(31,139,255,0.3)] satoshi"
+                            >
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   </div>

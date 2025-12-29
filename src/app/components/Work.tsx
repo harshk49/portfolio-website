@@ -178,7 +178,7 @@ const Work = () => {
     <section
       ref={sectionRef}
       id="work"
-      className="relative min-h-screen px-6 py-20 md:px-12 lg:px-24"
+      className="relative min-h-screen px-6 py-20 md:px-12 lg:px-24 bg-white z-10 rounded-t-[50px]"
     >
       <div className="mx-auto max-w-7xl">
         {/* Section Heading */}

@@ -117,10 +117,10 @@ const Hero = ({ navbarRef }: HeroProps) => {
   return (
     <section
       id="home"
-      className="h-screen relative p-8 flex flex-col overflow-hidden bg-[#F2F0EB]"
+      className="h-screen flex flex-col overflow-hidden bg-[#F2F0EB] sticky top-0"
     >
       {/* Centered Content Container */}
-      <div className="mx-auto w-full max-w-7xl h-full relative">
+      <div className="mx-auto w-full max-w-7xl h-full relative p-8">
         {/* Top left - Logo and Sound Wave Button */}
         <div className="absolute top-8 left-8 flex items-center gap-4 text-black text-xl font-light">
           <Image

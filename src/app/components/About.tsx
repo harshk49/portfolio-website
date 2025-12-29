@@ -98,20 +98,6 @@ const About = () => {
             The Brief
           </h2>
 
-          <div ref={contentRef} className="space-y-6">
-            <p className="text-xl md:text-2xl text-white satoshi leading-relaxed">
-              I&apos;m a passionate developer who loves creating beautiful and
-              functional web experiences. With a focus on modern technologies
-              and clean design, I bring ideas to life through code.
-            </p>
-
-            <p className="text-xl md:text-2xl text-white satoshi leading-relaxed">
-              My expertise spans across frontend development, with a particular
-              interest in creating smooth animations and intuitive user
-              interfaces that make a lasting impression.
-            </p>
-          </div>
-
           {/* Principles Section */}
           <div className="mt-20">
             <h3
@@ -121,22 +107,22 @@ const About = () => {
               Principles
             </h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[
                 {
-                  number: 1,
+                  number: "01",
                   title: "Clarity over cleverness",
                   description:
                     "Code is read far more than it's written. If it's impressive but confusing, it's wrong.",
                 },
                 {
-                  number: 2,
+                  number: "02",
                   title: "Build for change, not perfection",
                   description:
                     "Requirements evolve. Good systems expect it instead of fighting it.",
                 },
                 {
-                  number: 3,
+                  number: "03",
                   title: "Details decide outcomes",
                   description:
                     "Edge cases, naming, and structure are where quality actually lives.",
@@ -144,17 +130,28 @@ const About = () => {
               ].map((principle) => (
                 <div
                   key={principle.number}
-                  className="bg-white border border-gray-200 rounded-lg p-8 min-h-[200px] flex flex-col"
+                  className="principle-card group relative bg-gradient-to-br from-[#0A0A0A] to-[#141414] border border-white/10 rounded-2xl p-8 min-h-[280px] flex flex-col transition-all duration-500 hover:border-[#1F8BFF]/50 hover:shadow-[0_0_40px_rgba(31,139,255,0.15)] overflow-hidden"
                 >
-                  <span className="principle-number text-9xl font-semibold font-['Clash_Grotesk'] relative leading-none mb-4">
-                    {principle.number}
-                  </span>
-                  <h4 className="text-xl font-semibold font-['Clash_Grotesk'] mb-3 text-black">
-                    {principle.title}
-                  </h4>
-                  <p className="text-gray-600 satoshi text-base leading-relaxed">
-                    {principle.description}
-                  </p>
+                  {/* Animated gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#1F8BFF]/0 to-[#1F8BFF]/0 group-hover:from-[#1F8BFF]/5 group-hover:to-transparent transition-all duration-500 rounded-2xl" />
+
+                  {/* Top accent line */}
+                  <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#1F8BFF]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                  <div className="relative z-10">
+                    <span className="principle-number-modern inline-block text-5xl font-bold font-['Clash_Grotesk'] mb-6 transition-transform duration-500 group-hover:scale-110">
+                      {principle.number}
+                    </span>
+                    <h4 className="text-xl font-semibold font-['Clash_Grotesk'] mb-4 text-white transition-colors duration-300 group-hover:text-[#1F8BFF]">
+                      {principle.title}
+                    </h4>
+                    <p className="text-gray-400 satoshi text-base leading-relaxed transition-colors duration-300 group-hover:text-gray-300">
+                      {principle.description}
+                    </p>
+                  </div>
+
+                  {/* Bottom right decorative element */}
+                  <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-[#1F8BFF]/5 rounded-full blur-2xl group-hover:bg-[#1F8BFF]/10 transition-all duration-500" />
                 </div>
               ))}
             </div>
@@ -192,20 +189,35 @@ const About = () => {
       </section>
 
       <style jsx>{`
-        .principle-number {
-          -webkit-text-stroke: 2px #1f8bff;
-          -webkit-text-fill-color: transparent;
-          color: transparent;
-          position: relative;
-          background: repeating-linear-gradient(
-            45deg,
-            transparent,
-            transparent 6px,
-            #1f8bff 6px,
-            #1f8bff 8px
-          );
+        .principle-number-modern {
+          background: linear-gradient(135deg, #1f8bff 0%, #60a5fa 100%);
           -webkit-background-clip: text;
           background-clip: text;
+          -webkit-text-fill-color: transparent;
+          position: relative;
+        }
+
+        .principle-card::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          border-radius: 1rem;
+          padding: 1px;
+          background: linear-gradient(
+            135deg,
+            rgba(31, 139, 255, 0.1),
+            transparent
+          );
+          -webkit-mask: linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+          -webkit-mask-composite: xor;
+          mask-composite: exclude;
+          opacity: 0;
+          transition: opacity 0.5s;
+        }
+
+        .principle-card:hover::before {
+          opacity: 1;
         }
 
         .scrollbar-hide::-webkit-scrollbar {
