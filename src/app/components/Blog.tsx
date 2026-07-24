@@ -3,81 +3,10 @@
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { BLOG_POSTS } from "@/constant";
 
 gsap.registerPlugin(ScrollTrigger);
 
-interface BlogPost {
-  id: number;
-  title: string;
-  excerpt: string;
-  date: string;
-  readTime: string;
-  category: string;
-  slug: string;
-}
-
-const blogPosts: BlogPost[] = [
-  {
-    id: 1,
-    title: "Building Scalable Web Applications with Next.js",
-    excerpt:
-      "Explore the best practices and patterns for creating performant, scalable web applications using Next.js 14 and React Server Components.",
-    date: "Dec 15, 2024",
-    readTime: "8 min read",
-    category: "Web Development",
-    slug: "building-scalable-web-apps-nextjs",
-  },
-  {
-    id: 2,
-    title: "Mastering GSAP Animations in React",
-    excerpt:
-      "A comprehensive guide to creating smooth, performant animations in React applications using GSAP and modern best practices.",
-    date: "Dec 8, 2024",
-    readTime: "12 min read",
-    category: "Animation",
-    slug: "mastering-gsap-animations-react",
-  },
-  {
-    id: 3,
-    title: "The Power of TypeScript in Modern Development",
-    excerpt:
-      "Discover how TypeScript enhances code quality, improves developer experience, and catches bugs before they reach production.",
-    date: "Nov 28, 2024",
-    readTime: "10 min read",
-    category: "TypeScript",
-    slug: "power-of-typescript-modern-dev",
-  },
-  {
-    id: 4,
-    title: "Optimizing React Performance: Tips and Tricks",
-    excerpt:
-      "Learn practical techniques to optimize your React applications, from memo and useMemo to code splitting and lazy loading.",
-    date: "Nov 20, 2024",
-    readTime: "15 min read",
-    category: "Performance",
-    slug: "optimizing-react-performance",
-  },
-  {
-    id: 5,
-    title: "Tailwind CSS: Utility-First Design Philosophy",
-    excerpt:
-      "Understanding the utility-first approach to styling and how Tailwind CSS can speed up your development workflow.",
-    date: "Nov 12, 2024",
-    readTime: "7 min read",
-    category: "CSS",
-    slug: "tailwind-utility-first-design",
-  },
-  {
-    id: 6,
-    title: "State Management in React: A Comprehensive Guide",
-    excerpt:
-      "Compare different state management solutions for React applications, from Context API to Zustand and beyond.",
-    date: "Nov 5, 2024",
-    readTime: "14 min read",
-    category: "React",
-    slug: "state-management-react-guide",
-  },
-];
 
 const Blog = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -173,7 +102,7 @@ const Blog = () => {
 
         {/* Blog Posts Grid */}
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {blogPosts.map((post, index) => (
+          {BLOG_POSTS.map((post, index) => (
             <article
               key={post.id}
               ref={(el) => {

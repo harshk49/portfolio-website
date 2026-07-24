@@ -2,138 +2,123 @@
 
 import React from "react";
 import Image from "next/image";
+import { CONTACT_LINKS, MARQUEE_IMAGES, PERSONAL_INFO } from "@/constant";
+
+
 
 const Footer = () => {
-  const marqueeImages = [
-    "/goku.jpeg",
-    "/Harsh.jpeg",
-    "/beng.jpeg",
-    "/book.jpeg",
-    "/kaach.jpeg",
-    "/plane.jpeg",
-    "/tajmahal.jpeg",
-    "https://i.pinimg.com/736x/05/4a/64/054a642a0ef827e6be57fe66e3e75459.jpg",
-    "https://i.pinimg.com/736x/b3/3e/99/b33e99df33e57bec6d9d3f896497a2e5.jpg",
-    "https://i.pinimg.com/736x/1a/03/ff/1a03fff18fbb548ab5afecb428467acb.jpg",
-    "https://i.pinimg.com/736x/c0/8d/e0/c08de0f057c174f95a9c0a86713483e4.jpg",
-    "https://i.pinimg.com/736x/d1/bd/98/d1bd98ac3d49e5c3bcae13ab1e2a5ed3.jpg",
-    "https://i.pinimg.com/1200x/22/e6/80/22e680e6936b7ab1a22f2c7f85416cbc.jpg",
-    "https://i.pinimg.com/736x/f7/9d/ee/f79deee1fec6d20e03887257661ecfa6.jpg",
-  ];
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const currentYear = new Date().getFullYear();
 
   return (
     <footer
       id="contact"
-      className="h-screen w-full bg-black text-white flex flex-col relative overflow-hidden 2xl:min-h-screen 2xl:h-auto"
+      className="w-full bg-black text-white flex flex-col relative overflow-hidden"
     >
-      {/* Main Content Container */}
-      <div className="flex-1 flex flex-col justify-center w-full py-4 md:py-0">
-        {/* Contact Section - Centered */}
-        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 md:px-12 lg:px-24">
-          <h2
-            className="mb-4 sm:mb-6 md:mb-8 font-['Clash_Grotesk'] text-3xl font-normal sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl"
-            style={{ color: "#1F8BFF" }}
-          >
-            Contact
-          </h2>
+      {/* Subtle background glow */}
+      <div className="absolute top-[20%] left-[10%] w-[400px] h-[400px] md:w-[500px] md:h-[500px] bg-[#1F8BFF]/[0.03] rounded-full blur-[120px] pointer-events-none" />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 sm:gap-y-4 md:gap-y-6 text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl">
-            <div className="text-white/60">Email</div>
-            <a
-              href="mailto:harshkardile49@gmail.com"
-              className="text-white sm:text-right hover:text-white/70 transition-colors relative inline-block sm:ml-auto group break-all sm:break-normal"
+      {/* ── Contact Section ── */}
+      <div className="flex-1 flex flex-col justify-center w-full py-16 sm:py-20 md:py-24 lg:py-28">
+        <div className="mx-auto w-full max-w-7xl px-6 md:px-12 lg:px-24">
+          {/* Section heading */}
+          <div className="mb-12 md:mb-16">
+            <h2
+              className="mb-3 font-['Clash_Grotesk'] text-4xl font-normal sm:text-5xl md:text-6xl lg:text-7xl"
+              style={{ color: "#1F8BFF" }}
             >
-              <span className="relative">
-                harshkardile49@gmail.com
-                <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#1F8BFF] transition-all duration-300 group-hover:w-full"></span>
-              </span>
-            </a>
+              Contact
+            </h2>
+          </div>
 
-            <div className="text-white/60">LinkedIn</div>
-            <a
-              href="https://linkedin.com/in/harsh-kardile"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white sm:text-right hover:text-white/70 transition-colors relative inline-block sm:ml-auto group"
-            >
-              <span className="relative">
-                in/harsh-kardile
-                <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#1F8BFF] transition-all duration-300 group-hover:w-full"></span>
-              </span>
-            </a>
+          {/* CTA line */}
+          <p className="text-white/40 text-sm sm:text-base md:text-lg mb-10 md:mb-14 max-w-lg satoshi">
+            Have a project in mind or want to collaborate? Let&apos;s connect
+            and build something meaningful together.
+          </p>
 
-            <div className="text-white/60">Medium</div>
-            <a
-              href="https://medium.com/@harshkardile"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white sm:text-right hover:text-white/70 transition-colors relative inline-block sm:ml-auto group"
-            >
-              <span className="relative">
-                @harshkardile
-                <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#1F8BFF] transition-all duration-300 group-hover:w-full"></span>
-              </span>
-            </a>
+          {/* Contact Links */}
+          <div className="space-y-0">
+            {CONTACT_LINKS.map((link, index) => (
+              <a
+                key={link.label}
+                href={link.href}
+                target={link.external ? "_blank" : undefined}
+                rel={link.external ? "noopener noreferrer" : undefined}
+                className="footer-contact-row group flex items-center justify-between py-4 sm:py-5 md:py-6 border-t border-white/[0.07] transition-all duration-300 hover:border-white/20"
+                aria-label={`${link.label}: ${link.value}`}
+              >
+                {/* Label */}
+                <span className="text-white/40 text-sm sm:text-base md:text-lg font-medium font-['Clash_Grotesk'] tracking-wide transition-colors duration-300 group-hover:text-white/60">
+                  {String(index + 1).padStart(2, "0")}
+                  <span className="mx-2 sm:mx-3 text-white/15">—</span>
+                  {link.label}
+                </span>
 
-            <div className="text-white/60">GitHub</div>
-            <a
-              href="https://github.com/harshk49"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white sm:text-right hover:text-white/70 transition-colors relative inline-block sm:ml-auto group"
-            >
-              <span className="relative">
-                harshk49
-                <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#1F8BFF] transition-all duration-300 group-hover:w-full"></span>
-              </span>
-            </a>
-
-            <div className="text-white/60">Instagram</div>
-            <a
-              href="https://instagram.com/harsh_kardile49"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white sm:text-right hover:text-white/70 transition-colors relative inline-block sm:ml-auto group"
-            >
-              <span className="relative">
-                harsh_kardile49
-                <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#1F8BFF] transition-all duration-300 group-hover:w-full"></span>
-              </span>
-            </a>
+                {/* Value + arrow */}
+                <span className="flex items-center gap-2 sm:gap-3">
+                  <span className="relative text-white text-sm sm:text-base md:text-lg lg:text-xl font-medium transition-colors duration-300 group-hover:text-[#1F8BFF]">
+                    {link.value}
+                    <span className="absolute -bottom-0.5 left-0 w-0 h-[1.5px] bg-[#1F8BFF] transition-all duration-300 group-hover:w-full" />
+                  </span>
+                  <svg
+                    className="w-4 h-4 text-white/0 transition-all duration-300 group-hover:text-[#1F8BFF] group-hover:translate-x-0.5 -translate-x-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M7 17L17 7M17 7H7M17 7v10"
+                    />
+                  </svg>
+                </span>
+              </a>
+            ))}
+            {/* Bottom border for last item */}
+            <div className="border-t border-white/[0.07]" />
           </div>
         </div>
       </div>
 
-      {/* When the Work Stops Section - Centered */}
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 md:px-12 lg:px-24 mb-4 sm:mb-6 md:mb-8">
-        <h2
-          className="font-['Clash_Grotesk'] text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-normal"
+      {/* ── When the Work Stops ── */}
+      <div className="mx-auto w-full max-w-7xl px-6 md:px-12 lg:px-24 mb-6 md:mb-8">
+        <h3
+          className="font-['Clash_Grotesk'] text-lg sm:text-xl md:text-2xl lg:text-3xl font-normal"
           style={{ color: "#1F8BFF" }}
         >
           When the Work Stops
-        </h2>
+        </h3>
+        <p className="text-white/30 text-xs sm:text-sm mt-1 satoshi">
+          A few things that keep me going outside the terminal.
+        </p>
       </div>
 
-      {/* Continuous Marquee Slider with Images */}
-      <div className="w-full pb-4 sm:pb-6 md:pb-8 lg:pb-12 overflow-hidden">
+      {/* ── Image Marquee ── */}
+      <div className="w-full pb-10 sm:pb-12 md:pb-16 overflow-hidden">
         <div className="flex gap-2 sm:gap-3 md:gap-4">
           <div className="flex gap-2 sm:gap-3 md:gap-4 animate-marquee">
-            {marqueeImages.map((image, index) => (
+            {MARQUEE_IMAGES.map((image, index) => (
               <div
                 key={`set1-${index}`}
-                className="flex-shrink-0 rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden group"
+                className="flex-shrink-0 rounded-xl md:rounded-2xl overflow-hidden group"
                 style={{
-                  width: "clamp(120px, 20vw, 200px)",
-                  height: "clamp(120px, 20vw, 200px)",
+                  width: "clamp(130px, 18vw, 200px)",
+                  height: "clamp(130px, 18vw, 200px)",
                 }}
                 onContextMenu={(e) => e.preventDefault()}
               >
                 <Image
                   src={image}
-                  alt={`Portfolio image ${index + 1}`}
+                  alt={`Life outside work ${index + 1}`}
                   width={200}
                   height={200}
-                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 pointer-events-none select-none transition-all duration-300"
+                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 pointer-events-none select-none transition-all duration-500"
                   draggable={false}
                 />
               </div>
@@ -143,22 +128,22 @@ const Footer = () => {
             className="flex gap-2 sm:gap-3 md:gap-4 animate-marquee"
             aria-hidden="true"
           >
-            {marqueeImages.map((image, index) => (
+            {MARQUEE_IMAGES.map((image, index) => (
               <div
                 key={`set2-${index}`}
-                className="flex-shrink-0 rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden group"
+                className="flex-shrink-0 rounded-xl md:rounded-2xl overflow-hidden group"
                 style={{
-                  width: "clamp(120px, 20vw, 200px)",
-                  height: "clamp(120px, 20vw, 200px)",
+                  width: "clamp(130px, 18vw, 200px)",
+                  height: "clamp(130px, 18vw, 200px)",
                 }}
                 onContextMenu={(e) => e.preventDefault()}
               >
                 <Image
                   src={image}
-                  alt={`Portfolio image ${index + 1}`}
+                  alt={`Life outside work ${index + 1}`}
                   width={200}
                   height={200}
-                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 pointer-events-none select-none transition-all duration-300"
+                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 pointer-events-none select-none transition-all duration-500"
                   draggable={false}
                 />
               </div>
@@ -167,20 +152,51 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Quote Section */}
-      <div className="w-full px-4 sm:px-6 md:px-8 pb-4 sm:pb-6">
-        <p
-          className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl font-medium italic text-center"
-          style={{ color: "#FFF" }}
-        >
-          &quot;If you know quality, you know where to find it.&quot;
-        </p>
+      {/* ── Bottom Bar ── */}
+      <div className="w-full border-t border-white/[0.07]">
+        <div className="mx-auto w-full max-w-7xl px-6 md:px-12 lg:px-24 py-6 md:py-8">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            {/* Left: Quote + Copyright */}
+            <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
+              <p className="text-white/25 text-xs sm:text-sm italic satoshi">
+                &quot;{PERSONAL_INFO.footerQuote}&quot;
+              </p>
+              <span className="hidden sm:block text-white/10">·</span>
+              <p className="text-white/20 text-xs satoshi">
+                © {currentYear} {PERSONAL_INFO.name}
+              </p>
+            </div>
+
+            {/* Right: Back to top */}
+            <button
+              onClick={scrollToTop}
+              className="footer-back-to-top group inline-flex items-center gap-2 text-white/30 text-xs sm:text-sm font-medium tracking-wide transition-all duration-300 hover:text-white/70 cursor-pointer"
+              aria-label="Scroll back to top"
+            >
+              <span className="satoshi">Back to top</span>
+              <svg
+                className="w-3.5 h-3.5 transition-transform duration-300 group-hover:-translate-y-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M5 15l7-7 7 7"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
       </div>
 
-      {/* Decorative Element - Subtle gradient */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-gray-900/20 to-transparent"></div>
-      </div>
+      <style jsx>{`
+        .footer-contact-row {
+          will-change: border-color;
+        }
+      `}</style>
     </footer>
   );
 };

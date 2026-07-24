@@ -3,84 +3,9 @@
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { EXPERIENCES } from "@/constant";
 
 gsap.registerPlugin(ScrollTrigger);
-
-interface ExperienceItem {
-  id: number;
-  company: string;
-  role: string;
-  period: string;
-  location: string;
-  description: string;
-  responsibilities: string[];
-  technologies: string[];
-}
-
-const experiences: ExperienceItem[] = [
-  {
-    id: 1,
-    company: "Tech Company Inc.",
-    role: "Senior Frontend Developer",
-    period: "Jan 2023 - Present",
-    location: "San Francisco, CA",
-    description:
-      "Leading frontend development initiatives and mentoring junior developers in modern web technologies.",
-    responsibilities: [
-      "Architected and developed responsive web applications using React and Next.js",
-      "Collaborated with cross-functional teams to deliver high-quality products",
-      "Implemented performance optimizations resulting in 40% faster load times",
-      "Mentored team of 5 junior developers in best practices and code reviews",
-    ],
-    technologies: [
-      "React",
-      "Next.js",
-      "TypeScript",
-      "Tailwind CSS",
-      "GSAP",
-      "Node.js",
-    ],
-  },
-  {
-    id: 2,
-    company: "Digital Solutions Ltd.",
-    role: "Full Stack Developer",
-    period: "Jun 2021 - Dec 2022",
-    location: "New York, NY",
-    description:
-      "Developed and maintained full-stack applications for enterprise clients.",
-    responsibilities: [
-      "Built scalable REST APIs using Node.js and Express",
-      "Designed and implemented database schemas in MongoDB and PostgreSQL",
-      "Created reusable component libraries for consistent UI/UX",
-      "Participated in agile development processes and sprint planning",
-    ],
-    technologies: [
-      "React",
-      "Node.js",
-      "Express",
-      "MongoDB",
-      "PostgreSQL",
-      "Docker",
-    ],
-  },
-  {
-    id: 3,
-    company: "Startup Ventures",
-    role: "Frontend Developer",
-    period: "Jan 2020 - May 2021",
-    location: "Austin, TX",
-    description:
-      "Contributed to the development of innovative web applications in a fast-paced startup environment.",
-    responsibilities: [
-      "Developed responsive user interfaces using React and Redux",
-      "Integrated third-party APIs and services",
-      "Collaborated with designers to implement pixel-perfect designs",
-      "Wrote unit and integration tests to ensure code quality",
-    ],
-    technologies: ["React", "Redux", "JavaScript", "CSS3", "Jest", "Git"],
-  },
-];
 
 const Experience = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -177,7 +102,7 @@ const Experience = () => {
 
           {/* Experience Items */}
           <div className="space-y-12">
-            {experiences.map((experience, index) => (
+            {EXPERIENCES.map((experience, index) => (
               <div
                 key={experience.id}
                 ref={addToRefs}

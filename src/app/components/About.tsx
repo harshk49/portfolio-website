@@ -3,6 +3,7 @@
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { PRINCIPLES } from "@/constant";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -93,7 +94,7 @@ const About = () => {
           <h2
             ref={headingRef}
             className="mb-16 font-['Clash_Grotesk'] text-5xl font-normal md:text-6xl lg:text-7xl"
-            style={{ color: "#1F8BFF" }}
+            style={{ color: "#3B82F6" }}
           >
             The Brief
           </h2>
@@ -102,47 +103,28 @@ const About = () => {
           <div className="mt-20">
             <h3
               className="text-3xl md:text-4xl lg:text-5xl font-normal font-['Clash_Grotesk'] mb-8"
-              style={{ color: "#1F8BFF" }}
+              style={{ color: "#3B82F6" }}
             >
               Principles
             </h3>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {[
-                {
-                  number: "01",
-                  title: "Clarity over cleverness",
-                  description:
-                    "Code is read far more than it's written. If it's impressive but confusing, it's wrong.",
-                },
-                {
-                  number: "02",
-                  title: "Build for change, not perfection",
-                  description:
-                    "Requirements evolve. Good systems expect it instead of fighting it.",
-                },
-                {
-                  number: "03",
-                  title: "Details decide outcomes",
-                  description:
-                    "Edge cases, naming, and structure are where quality actually lives.",
-                },
-              ].map((principle) => (
+              {PRINCIPLES.map((principle) => (
                 <div
                   key={principle.number}
-                  className="principle-card group relative bg-gradient-to-br from-[#0A0A0A] to-[#141414] border border-white/10 rounded-2xl p-8 min-h-[280px] flex flex-col transition-all duration-500 hover:border-[#1F8BFF]/50 hover:shadow-[0_0_40px_rgba(31,139,255,0.15)] overflow-hidden"
+                  className="principle-card group relative bg-gradient-to-br from-[#0A0A0A] to-[#141414] border border-white/10 rounded-2xl p-8 min-h-[280px] flex flex-col transition-all duration-500 hover:border-[#3B82F6]/50 hover:shadow-[0_0_40px_rgba(59,130,246,0.15)] overflow-hidden"
                 >
                   {/* Animated gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#1F8BFF]/0 to-[#1F8BFF]/0 group-hover:from-[#1F8BFF]/5 group-hover:to-transparent transition-all duration-500 rounded-2xl" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#3B82F6]/0 to-[#3B82F6]/0 group-hover:from-[#3B82F6]/5 group-hover:to-transparent transition-all duration-500 rounded-2xl" />
 
                   {/* Top accent line */}
-                  <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#1F8BFF]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#3B82F6]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                   <div className="relative z-10">
                     <span className="principle-number-modern inline-block text-5xl font-bold font-['Clash_Grotesk'] mb-6 transition-transform duration-500 group-hover:scale-110">
                       {principle.number}
                     </span>
-                    <h4 className="text-xl font-semibold font-['Clash_Grotesk'] mb-4 text-white transition-colors duration-300 group-hover:text-[#1F8BFF]">
+                    <h4 className="text-xl font-semibold font-['Clash_Grotesk'] mb-4 text-white transition-colors duration-300 group-hover:text-[#3B82F6]">
                       {principle.title}
                     </h4>
                     <p className="text-gray-400 satoshi text-base leading-relaxed transition-colors duration-300 group-hover:text-gray-300">
@@ -151,7 +133,7 @@ const About = () => {
                   </div>
 
                   {/* Bottom right decorative element */}
-                  <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-[#1F8BFF]/5 rounded-full blur-2xl group-hover:bg-[#1F8BFF]/10 transition-all duration-500" />
+                  <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-[#3B82F6]/5 rounded-full blur-2xl group-hover:bg-[#3B82F6]/10 transition-all duration-500" />
                 </div>
               ))}
             </div>
@@ -162,7 +144,7 @@ const About = () => {
             <h3
               ref={skillsHeadingRef}
               className="text-3xl md:text-4xl lg:text-5xl font-normal font-['Clash_Grotesk'] mb-8"
-              style={{ color: "#1F8BFF" }}
+              style={{ color: "#3B82F6" }}
             >
               Expertise
             </h3>
@@ -190,7 +172,7 @@ const About = () => {
 
       <style jsx>{`
         .principle-number-modern {
-          background: linear-gradient(135deg, #1f8bff 0%, #60a5fa 100%);
+          background: linear-gradient(135deg, #3B82F6 0%, #60a5fa 100%);
           -webkit-background-clip: text;
           background-clip: text;
           -webkit-text-fill-color: transparent;

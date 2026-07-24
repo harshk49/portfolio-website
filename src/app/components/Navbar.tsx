@@ -1,15 +1,11 @@
 "use client";
 
 import React, { useState, forwardRef } from "react";
+import { NAV_ITEMS } from "@/constant";
 
 const Navbar = forwardRef<HTMLDivElement>((props, ref) => {
   const [activeItem, setActiveItem] = useState("Home");
 
-  const navItems = [
-    { name: "Works", href: "#work" },
-    { name: "Experience", href: "#experience" },
-    { name: "Contact", href: "#contact" },
-  ];
 
   return (
     <nav
@@ -18,7 +14,7 @@ const Navbar = forwardRef<HTMLDivElement>((props, ref) => {
     >
       <div className=" px-6 py-3">
         <ul className="flex items-center space-x-8">
-          {navItems.map((item) => (
+          {NAV_ITEMS.map((item) => (
             <li key={item.name}>
               <a
                 href={item.href}

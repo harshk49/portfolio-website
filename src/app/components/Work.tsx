@@ -4,71 +4,10 @@ import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 // import Image from "next/image";
+import { PROJECTS, Project } from "@/constant";
 
 gsap.registerPlugin(ScrollTrigger);
 
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  tags: string[];
-  image: string;
-  link?: string;
-  github?: string;
-}
-
-const projects: Project[] = [
-  {
-    id: 1,
-    title: "Project One",
-    description:
-      "A modern web application built with Next.js and TypeScript, featuring real-time data synchronization and responsive design.",
-    tags: ["Next.js", "TypeScript", "Tailwind CSS", "GSAP"],
-    image: "/projects/project1.jpg",
-    link: "https://project1.com",
-    github: "https://github.com/username/project1",
-  },
-  {
-    id: 2,
-    title: "Project Two",
-    description:
-      "An innovative mobile-first platform with advanced animations and seamless user experience.",
-    tags: ["React", "Node.js", "MongoDB", "Express"],
-    image: "/projects/project2.jpg",
-    link: "https://project2.com",
-    github: "https://github.com/username/project2",
-  },
-  {
-    id: 3,
-    title: "Project Three",
-    description:
-      "A full-stack e-commerce solution with secure payment integration and inventory management.",
-    tags: ["React", "Redux", "Firebase", "Stripe"],
-    image: "/projects/project3.jpg",
-    link: "https://project3.com",
-    github: "https://github.com/username/project3",
-  },
-  {
-    id: 4,
-    title: "Project Four",
-    description:
-      "An AI-powered analytics dashboard with real-time insights and data visualization.",
-    tags: ["Python", "TensorFlow", "React", "D3.js"],
-    image: "/projects/project4.jpg",
-    link: "https://project4.com",
-    github: "https://github.com/username/project4",
-  },
-  {
-    id: 5,
-    title: "Project Five",
-    description:
-      "A collaborative workspace tool with video conferencing and document sharing.",
-    tags: ["WebRTC", "Socket.io", "Vue.js", "PostgreSQL"],
-    image: "/projects/project5.jpg",
-    link: "https://project5.com",
-    github: "https://github.com/username/project5",
-  },
-];
 
 const Work = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -198,7 +137,7 @@ const Work = () => {
 
         {/* Projects List */}
         <div className="space-y-0">
-          {projects.map((project, index) => (
+          {PROJECTS.map((project, index) => (
             <div
               key={project.id}
               ref={addToRefs}
